@@ -142,18 +142,21 @@ class BossTimer(Star):
             # Avoid matching common English phrases like "is day", "world", etc.
             common_words = {"is", "was", "has", "had", "world", "good", "bad", "old", "new", "should", "would", "could"}
 
+            # Check if input contains Chinese characters (allow single Chinese chars)
+            has_chinese = any('\u4e00' <= char <= '\u9fff' for char in boss_input)
+
             # Only trigger easter egg if:
-            # 1. Input is at least 2 characters (avoid single letters)
+            # 1. Has Chinese character OR input is at least 2 characters (avoid single English letters)
             # 2. Not a common English word that might appear in phrases
-            if len(boss_input) >= 2 and boss_input not in common_words:
+            if (has_chinese or len(boss_input) >= 2) and boss_input not in common_words:
                 sender_name = event.get_sender_name()
                 if sender_name:
                     # Random selection among 3 response types
-                    choice = random.random()
-                    if choice < 0.33:
+                    choice = random.randint(0, 2)
+                    if choice == 0:
                         # Response 1: Simple easter egg
                         yield MessageEventResult().message(f"{sender_name} d 已记录")
-                    elif choice < 0.67:
+                    elif choice == 1:
                         # Response 2: "ddd 就知道d"
                         yield MessageEventResult().message("ddd 就知道d")
                     else:
