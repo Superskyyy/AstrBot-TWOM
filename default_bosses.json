@@ -1,0 +1,722 @@
+{
+  "tzzz1": {
+    "display_name": "爱困乌龟维护 tzzz1 (±15min)",
+    "aliases": [
+      "tzzz1",
+      "爱困乌龟1"
+    ],
+    "respawn_hours": 68,
+    "respawn_minutes": 25,
+    "respawn_seconds": 0,
+    "emoji": "🐢🐢(±15min)"
+  },
+  "tzzz2": {
+    "display_name": "爱困乌龟普通 tzzz2 (±15min)",
+    "aliases": [
+      "tzzz2"
+    ],
+    "respawn_hours": 65,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🐢🐢(±15min)"
+  },
+  "tz": {
+    "display_name": "狂睡乌龟 tz",
+    "aliases": [
+      "tz",
+      "小乌龟",
+      "狂睡乌龟"
+    ],
+    "respawn_hours": 5,
+    "respawn_minutes": 33,
+    "respawn_seconds": 0,
+    "emoji": "🐢"
+  },
+  "pboss": {
+    "display_name": "海盗 Boss",
+    "aliases": [
+      "pboss"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 25,
+    "respawn_seconds": 0,
+    "emoji": "🏴‍☠️"
+  },
+  "黑天": {
+    "display_name": "黑天",
+    "aliases": [
+      "黑天",
+      "blacksky"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 33,
+    "respawn_seconds": 0,
+    "emoji": "🐼🛠️"
+  },
+  "juno": {
+    "display_name": "朱诺",
+    "aliases": [
+      "juno",
+      "朱诺",
+      "猪糯"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 35,
+    "respawn_seconds": 0,
+    "emoji": "🐼"
+  },
+  "bs": {
+    "display_name": "黑骨",
+    "aliases": [
+      "bs",
+      "黑骨"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 56,
+    "respawn_seconds": 50,
+    "emoji": "⚫💀"
+  },
+  "recluse": {
+    "display_name": "Recluse",
+    "aliases": [
+      "recluse",
+      "recluse-fake"
+    ],
+    "respawn_hours": 11,
+    "respawn_minutes": 23,
+    "respawn_seconds": 0,
+    "emoji": "🦋🦋🦋"
+  },
+  "ak": {
+    "display_name": "AK",
+    "aliases": [
+      "ak"
+    ],
+    "respawn_hours": 1,
+    "respawn_minutes": 3,
+    "respawn_seconds": 15,
+    "emoji": "🥊🥊🥊🥊"
+  },
+  "snake": {
+    "display_name": "Snake",
+    "aliases": [
+      "snake"
+    ],
+    "respawn_hours": 8,
+    "respawn_minutes": 43,
+    "respawn_seconds": 20,
+    "emoji": "🦎"
+  },
+  "blue": {
+    "display_name": "Blue",
+    "aliases": [
+      "blue",
+      "蓝鬼"
+    ],
+    "respawn_hours": 1,
+    "respawn_minutes": 5,
+    "respawn_seconds": 10,
+    "emoji": "🔵🔵🔵"
+  },
+  "green": {
+    "display_name": "Green",
+    "aliases": [
+      "green",
+      "绿鬼"
+    ],
+    "respawn_hours": 1,
+    "respawn_minutes": 8,
+    "respawn_seconds": 45,
+    "emoji": "🟢🟢🟢"
+  },
+  "red": {
+    "display_name": "Red",
+    "aliases": [
+      "red",
+      "红鬼"
+    ],
+    "respawn_hours": 1,
+    "respawn_minutes": 6,
+    "respawn_seconds": 45,
+    "emoji": "🔴🔴🔴"
+  },
+  "gimp": {
+    "display_name": "Gimp",
+    "aliases": [
+      "gimp"
+    ],
+    "respawn_hours": 1,
+    "respawn_minutes": 3,
+    "respawn_seconds": 15,
+    "emoji": "🐣🐣🐣"
+  },
+  "sephia": {
+    "display_name": "Sephia",
+    "aliases": [
+      "sephia",
+      "赛斐亚"
+    ],
+    "respawn_hours": 72,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🐾"
+  },
+  "caligo": {
+    "display_name": "Caligo",
+    "aliases": [
+      "caligo",
+      "龙",
+      "龍"
+    ],
+    "respawn_hours": 168,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🐲"
+  },
+  "ntr": {
+    "display_name": "NTR",
+    "aliases": [
+      "ntr",
+      "牛头人"
+    ],
+    "respawn_hours": 72,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🐮🐮🐮🐮"
+  },
+  "bmm": {
+    "display_name": "白发魔女",
+    "aliases": [
+      "bmm"
+    ],
+    "respawn_hours": 48,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🐍🐍🐍"
+  },
+  "dev": {
+    "display_name": "Dev",
+    "aliases": [
+      "dev",
+      "dev维护"
+    ],
+    "respawn_hours": 5,
+    "respawn_minutes": 33,
+    "respawn_seconds": 0,
+    "emoji": "👢👢👢"
+  },
+  "faith": {
+    "display_name": "Faith",
+    "aliases": [
+      "faith",
+      "培伊斯"
+    ],
+    "respawn_hours": 5,
+    "respawn_minutes": 53,
+    "respawn_seconds": 0,
+    "emoji": "👐👐👐"
+  },
+  "bill": {
+    "display_name": "Bill",
+    "aliases": [
+      "bill",
+      "bill-fake",
+      "billi"
+    ],
+    "respawn_hours": 7,
+    "respawn_minutes": 55,
+    "respawn_seconds": 0,
+    "emoji": "🔮🔮🔮"
+  },
+  "darl": {
+    "display_name": "Darlene",
+    "aliases": [
+      "女巫",
+      "darl"
+    ],
+    "respawn_hours": 72,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🧙‍♀️🧙‍♀️🧙"
+  },
+  "uk": {
+    "display_name": "Ukpana",
+    "aliases": [
+      "uk"
+    ],
+    "respawn_hours": 24,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "👿👿👿"
+  },
+  "wdk": {
+    "display_name": "WDK",
+    "aliases": [
+      "wdk",
+      "wdk维护"
+    ],
+    "respawn_hours": 2,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "🐻‍❄️🐻‍❄️🐻‍❄️"
+  },
+  "黑狗": {
+    "display_name": "黑狗",
+    "aliases": [
+      "黑狗"
+    ],
+    "respawn_hours": 2,
+    "respawn_minutes": 33,
+    "respawn_seconds": 0,
+    "emoji": "🐶⚔️"
+  },
+  "steampunk": {
+    "display_name": "蒸汽朋克",
+    "aliases": [
+      "steampunk",
+      "蒸汽朋克"
+    ],
+    "respawn_hours": 2,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "🤖🩸"
+  },
+  "titanium": {
+    "display_name": "钛合金魔像",
+    "aliases": [
+      "titan",
+      "钛"
+    ],
+    "respawn_hours": 2,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "🤖🩸"
+  },
+  "twist": {
+    "display_name": "Twister",
+    "aliases": [
+      "twist",
+      "twister"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 58,
+    "respawn_seconds": 20,
+    "emoji": "🟢🌪️🟢"
+  },
+  "tank": {
+    "display_name": "Tank",
+    "aliases": [
+      "tank"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 58,
+    "respawn_seconds": 20,
+    "emoji": "🎽🎽🎽"
+  },
+  "红鸟": {
+    "display_name": "红鸟",
+    "aliases": [
+      "红鸟"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 58,
+    "respawn_seconds": 20,
+    "emoji": "🐦"
+  },
+  "泰坦": {
+    "display_name": "泰坦",
+    "aliases": [
+      "泰坦"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 58,
+    "respawn_seconds": 20,
+    "emoji": "🤖"
+  },
+  "ft": {
+    "display_name": "FT",
+    "aliases": [
+      "ft"
+    ],
+    "respawn_hours": 1,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🎆"
+  },
+  "沙墓": {
+    "display_name": "沙墓",
+    "aliases": [
+      "沙墓"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🏜️🪦"
+  },
+  "大眼": {
+    "display_name": "大眼",
+    "aliases": [
+      "大眼"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🏜️👁️"
+  },
+  "shack": {
+    "display_name": "沙沙沙",
+    "aliases": [
+      "shack",
+      "沙沙沙"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "🏜️🦈🦈🦈"
+  },
+  "suuk": {
+    "display_name": "Suuk",
+    "aliases": [
+      "suuk"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🏜️🦈🗡️"
+  },
+  "svk": {
+    "display_name": "SVK",
+    "aliases": [
+      "svk"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🏜️🦈"
+  },
+  "rb": {
+    "display_name": "RB",
+    "aliases": [
+      "rb"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "🔴🐝"
+  },
+  "ass": {
+    "display_name": "Assassin",
+    "aliases": [
+      "ass",
+      "azz"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "💰🚶"
+  },
+  "bm": {
+    "display_name": "BM",
+    "aliases": [
+      "bm"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🐹🐹🐹"
+  },
+  "lm": {
+    "display_name": "LM",
+    "aliases": [
+      "lm",
+      "神经病",
+      "轻微神经病"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🤕🤕🤕"
+  },
+  "ms": {
+    "display_name": "心声",
+    "aliases": [
+      "ms",
+      "心声"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🤕🤕🤕"
+  },
+  "7": {
+    "display_name": "7",
+    "aliases": [
+      "7"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🦊🔒"
+  },
+  "绿狐狸": {
+    "display_name": "777尾狐",
+    "aliases": [
+      "绿狐狸",
+      "777"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "🟢🦊"
+  },
+  "d4": {
+    "display_name": "盾4",
+    "aliases": [
+      "盾4",
+      "d4"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "🦹‍♂️🛡️"
+  },
+  "花": {
+    "display_name": "花",
+    "aliases": [
+      "花"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🥀"
+  },
+  "火狐": {
+    "display_name": "火狐",
+    "aliases": [
+      "火狐"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🔥🦊"
+  },
+  "raven": {
+    "display_name": "Raven",
+    "aliases": [
+      "raven"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🦅🔒"
+  },
+  "白鸟": {
+    "display_name": "白鸟",
+    "aliases": [
+      "白鸟"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "⚪🦅"
+  },
+  "鬼蛇": {
+    "display_name": "鬼蛇",
+    "aliases": [
+      "鬼蛇"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "👻🦎🛡️"
+  },
+  "大树": {
+    "display_name": "大树",
+    "aliases": [
+      "大树",
+      "树",
+      "tree"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 58,
+    "respawn_seconds": 0,
+    "emoji": "🌳"
+  },
+  "毒液花": {
+    "display_name": "毒液花",
+    "aliases": [
+      "毒液花"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 28,
+    "respawn_seconds": 10,
+    "emoji": "☠️🥀"
+  },
+  "apapa": {
+    "display_name": "Apapa",
+    "aliases": [
+      "apapa"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 15,
+    "respawn_seconds": 0,
+    "emoji": "👹"
+  },
+  "lab": {
+    "display_name": "Lab",
+    "aliases": [
+      "lab",
+      "lab2",
+      "lab3"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "🧪"
+  },
+  "deer": {
+    "display_name": "鹿",
+    "aliases": [
+      "deer",
+      "鹿"
+    ],
+    "respawn_hours": 6,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🦌🦌🦌"
+  },
+  "gpig": {
+    "display_name": "灰猪",
+    "aliases": [
+      "gpig",
+      "灰猪"
+    ],
+    "respawn_hours": 1,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🐖"
+  },
+  "ypig": {
+    "display_name": "黄猪",
+    "aliases": [
+      "ypig",
+      "bpig",
+      "黄猪",
+      "棕猪"
+    ],
+    "respawn_hours": 1,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🐖"
+  },
+  "熊": {
+    "display_name": "艾伊尤的护卫兵",
+    "aliases": [
+      "熊"
+    ],
+    "respawn_hours": 72,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🐻"
+  },
+  "mush": {
+    "display_name": "莫提蘑菇",
+    "aliases": [
+      "蘑菇",
+      "mg",
+      "mush"
+    ],
+    "respawn_hours": 1,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🍄"
+  },
+  "butterfly": {
+    "display_name": "亚勒凯蝴蝶",
+    "aliases": [
+      "蝴蝶",
+      "butterfly"
+    ],
+    "respawn_hours": 1,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🦋"
+  },
+  "sl": {
+    "display_name": "索尔里奇巫妖",
+    "aliases": [
+      "sl",
+      "lich",
+      "巫妖"
+    ],
+    "respawn_hours": 24,
+    "respawn_minutes": 15,
+    "respawn_seconds": 0,
+    "emoji": "🪄"
+  },
+  "overload": {
+    "display_name": "奥伯洛德 Overload",
+    "aliases": [
+      "overload",
+      "ol"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "🪄"
+  },
+  "glu": {
+    "display_name": "格鲁柯斯 GLU",
+    "aliases": [
+      "glu",
+      "gl"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "🪄"
+  },
+  "恒河豚": {
+    "display_name": "恒河豚",
+    "aliases": [
+      "恒河豚",
+      "whale",
+      "鲸鱼"
+    ],
+    "respawn_hours": 168,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🐋"
+  },
+  "活动pf": {
+    "display_name": "活动PF",
+    "aliases": [
+      "活动pf",
+      "活动mod"
+    ],
+    "respawn_hours": 11,
+    "respawn_minutes": 45,
+    "respawn_seconds": 0,
+    "emoji": "🎉"
+  },
+  "活动hsp": {
+    "display_name": "活动HSP",
+    "aliases": [
+      "活动hsp"
+    ],
+    "respawn_hours": 11,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "🎉"
+  },
+  "活动beach": {
+    "display_name": "活动Beach",
+    "aliases": [
+      "活动beach"
+    ],
+    "respawn_hours": 5,
+    "respawn_minutes": 55,
+    "respawn_seconds": 0,
+    "emoji": "🎉"
+  }
+}

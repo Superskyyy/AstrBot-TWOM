@@ -1,0 +1,5 @@
+name: astrbot_plugin_twom_boss_timer
+desc: TWOM Boss timer with automatic reminders and map viewer
+version: v1.1.0
+author: Superskyyy
+repo: https://github.com/Superskyyy/AstrBot-TWOM

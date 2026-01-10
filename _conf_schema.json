@@ -1,0 +1,71 @@
+{
+  "timezone": {
+    "description": "主时区设置（中国时区）",
+    "type": "string",
+    "default": "Asia/Shanghai",
+    "hint": "主时区，如 Asia/Shanghai"
+  },
+  "secondary_timezone": {
+    "description": "第二时区设置（加拿大时区）",
+    "type": "string",
+    "default": "America/Toronto",
+    "hint": "第二时区，如 America/Toronto, America/Vancouver。会自动处理冬夏令时"
+  },
+  "show_secondary_timezone": {
+    "description": "是否显示第二时区",
+    "type": "bool",
+    "default": true,
+    "hint": "开启后会同时显示中国和加拿大时间"
+  },
+  "whitelist_enabled": {
+    "description": "启用群组白名单",
+    "type": "bool",
+    "default": false,
+    "hint": "开启后，只有在白名单中的群组才会响应boss计时命令"
+  },
+  "whitelist_groups": {
+    "description": "白名单群组列表",
+    "type": "list",
+    "items": { "type": "string" },
+    "default": [],
+    "hint": "只有这些群组会响应boss计时命令。需要先开启 <启用群组白名单>。格式：[\"123456789\", \"987654321\"]"
+  },
+  "whitelist_users": {
+    "description": "白名单用户列表（私聊）",
+    "type": "list",
+    "items": { "type": "string" },
+    "default": [],
+    "hint": "只有这些用户可以在私聊中使用boss计时功能。格式：[\"用户QQ号1\", \"用户QQ号2\"]。留空则禁用私聊功能"
+  },
+  "group_boss_filter_enabled": {
+    "description": "启用群组Boss过滤",
+    "type": "bool",
+    "default": false,
+    "hint": "开启后，每个群只能记录和查看自己关心的boss列表"
+  },
+  "group_boss_filters": {
+    "description": "群组Boss过滤配置（JSON格式）",
+    "type": "string",
+    "default": "{}",
+    "hint": "格式：{\"群号1\": [\"bmm\", \"uk\"], \"群号2\": [\"gpig\", \"mush\"]}。未配置的群组默认可以看所有boss"
+  },
+  "reminder_intervals": {
+    "description": "提醒时间点（分钟）",
+    "type": "string",
+    "default": "3",
+    "hint": "逗号分隔，如 3 表示提前3分钟提醒，或 30,15,3 表示多个时间点提醒"
+  },
+  "core_groups": {
+    "description": "核心群组列表（可选）",
+    "type": "list",
+    "items": { "type": "string" },
+    "default": [],
+    "hint": "【可选】核心群可以查看所有群的boss计时器（只收到自己群的提醒）。适合作为主boss管理群"
+  },
+  "custom_bosses_enabled": {
+    "description": "启用自定义boss配置",
+    "type": "bool",
+    "default": false,
+    "hint": "开启后可在 data/boss_timer/bosses.json 中自定义boss配置"
+  }
+}
