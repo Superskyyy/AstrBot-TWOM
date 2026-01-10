@@ -148,12 +148,16 @@ class BossTimer(Star):
             if len(boss_input) >= 2 and boss_input not in common_words:
                 sender_name = event.get_sender_name()
                 if sender_name:
-                    # 50% chance for each response type
-                    if random.random() < 0.5:
-                        # Simple easter egg response
+                    # Random selection among 3 response types
+                    choice = random.random()
+                    if choice < 0.33:
+                        # Response 1: Simple easter egg
                         yield MessageEventResult().message(f"{sender_name} d 已记录")
+                    elif choice < 0.67:
+                        # Response 2: "ddd 就知道d"
+                        yield MessageEventResult().message("ddd 就知道d")
                     else:
-                        # LLM funny response
+                        # Response 3: LLM funny response
                         try:
                             chat_provider_id = await self.context.get_current_chat_provider_id(
                                 event.unified_msg_origin
