@@ -3,6 +3,7 @@ TWOM Boss Timer Plugin for AstrBot
 Tracks boss respawn times and sends automatic reminders
 """
 
+import random
 import re
 from datetime import datetime
 from pathlib import Path
@@ -147,7 +148,34 @@ class BossTimer(Star):
             if len(boss_input) >= 2 and boss_input not in common_words:
                 sender_name = event.get_sender_name()
                 if sender_name:
-                    yield MessageEventResult().message(f"{sender_name} d 已记录")
+                    # 50% chance for each response type
+                    if random.random() < 0.5:
+                        # Simple easter egg response
+                        yield MessageEventResult().message(f"{sender_name} d 已记录")
+                    else:
+                        # LLM funny response
+                        try:
+                            chat_provider_id = await self.context.get_current_chat_provider_id(
+                                event.unified_msg_origin
+                            )
+                            llm_resp = await self.context.llm_generate(
+                                chat_provider_id=chat_provider_id,
+                                prompt=f"用户 {sender_name} 尝试记录一个不存在的boss: '{boss_input} d'",
+                                system_prompt=(
+                                    "你是一个幽默的游戏助手。当玩家尝试记录一个不存在的boss时，"
+                                    "用1-2句简短幽默的话调侃他们。语气要轻松友好，可以开玩笑但不要太过分。"
+                                    "不要使用emoji，保持简洁。"
+                                ),
+                            )
+                            if llm_resp and llm_resp.completion:
+                                yield MessageEventResult().message(llm_resp.completion)
+                            else:
+                                # Fallback to simple message if LLM fails
+                                yield MessageEventResult().message(f"{sender_name} d 已记录")
+                        except Exception as e:
+                            logger.error(f"Failed to generate LLM easter egg: {e}")
+                            # Fallback to simple message
+                            yield MessageEventResult().message(f"{sender_name} d 已记录")
             return
 
         try:
