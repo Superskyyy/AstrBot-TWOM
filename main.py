@@ -130,13 +130,35 @@ class BossTimer(Star):
         msg = re.sub(r'\s+', ' ', msg.replace('　', ' '))
 
         # Parse boss command (支持 "大树 d" 和 "大树d" 两种格式)
-        match = re.match(r"^(\S+)\s*d(?:\s+(.+))?$", msg, re.IGNORECASE)
-        if not match:
-            logger.debug(f"Boss death pattern not matched: '{msg}'")
-            return
+        msg_lower = msg.lower()
+        boss_name = None
+        time_part = None
 
-        boss_input = match.group(1).lower()
-        boss_name = boss_config.get_boss_by_alias(boss_input, self.boss_alias_map)
+        # 先尝试有空格的版本 "xxx d"
+        match_with_space = re.match(r"^(\S+)\s+d(?:\s+(.+))?$", msg_lower)
+        if match_with_space:
+            boss_input = match_with_space.group(1)
+            time_part = match_with_space.group(2)
+            boss_name = boss_config.get_boss_by_alias(boss_input, self.boss_alias_map)
+        else:
+            # 尝试无空格版本 "xxxd"
+            match_no_space = re.match(r"^(\S+)d(?:\s+(.+))?$", msg_lower)
+            if match_no_space:
+                prefix = match_no_space.group(1)
+                time_part = match_no_space.group(2)
+
+                # 先尝试完整名字（包括'd'）- 防止boss名本身以'd'结尾
+                full_name = prefix + 'd'
+                boss_name = boss_config.get_boss_by_alias(full_name, self.boss_alias_map)
+                boss_input = full_name if boss_name else prefix
+
+                # 如果完整名字找不到，再尝试去掉'd'的版本
+                if not boss_name:
+                    boss_name = boss_config.get_boss_by_alias(prefix, self.boss_alias_map)
+                    boss_input = prefix
+            else:
+                logger.debug(f"Boss death pattern not matched: '{msg}'")
+                return
         if not boss_name:
             # Easter egg: if pattern matches but no boss found
             # Avoid matching common English phrases like "is day", "world", etc.
@@ -178,7 +200,7 @@ class BossTimer(Star):
             return
 
         try:
-            death_time = time_utils.parse_death_time(match.group(2) or "", self.timezone)
+            death_time = time_utils.parse_death_time(time_part or "", self.timezone)
         except ValueError as e:
             logger.debug(f"Failed to parse death time for '{msg}': {e}")
             return
