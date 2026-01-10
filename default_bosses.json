@@ -35,7 +35,9 @@
   "pboss": {
     "display_name": "海盗 PirateBoss",
     "aliases": [
-      "pboss"
+      "pboss",
+      "海盗船",
+      "船长"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 25,

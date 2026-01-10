@@ -163,43 +163,22 @@ class BossTimer(Star):
                 logger.debug(f"Boss death pattern not matched: '{msg}'")
                 return
         if not boss_name:
-            # Easter egg: if pattern matches but no boss found
+            # Boss not found - show fixed message
             # Avoid matching common English phrases like "is day", "world", etc.
             common_words = {"is", "was", "has", "had", "world", "good", "bad", "old", "new", "should", "would", "could"}
 
             # Check if input contains Chinese characters (allow single Chinese chars)
             has_chinese = any('\u4e00' <= char <= '\u9fff' for char in boss_input)
 
-            # Only trigger easter egg if:
+            # Only show message if:
             # 1. Has Chinese character OR input is at least 2 characters (avoid single English letters)
             # 2. Not a common English word that might appear in phrases
             if (has_chinese or len(boss_input) >= 2) and boss_input not in common_words:
-                sender_name = event.get_sender_name()
-                if sender_name:
-                    # Always use LLM to generate funny response
-                    try:
-                        chat_provider_id = await self.context.get_current_chat_provider_id(
-                            event.unified_msg_origin
-                        )
-                        llm_resp = await self.context.llm_generate(
-                            chat_provider_id=chat_provider_id,
-                            prompt=f"用户 {sender_name} 尝试记录一个不存在的 boss 的击杀（d 代表击杀）: '{boss_input}'",
-                            system_prompt=(
-                                "你是一个幽默的游戏助手。当玩家尝试记录一个不存在的 boss 时，"
-                                "用1-2句简短幽默的话调侃他们 因为大部分情况下他们是在试图调侃群友，看看上下文是不是这样。语气要轻松友好，可以开玩笑但不要太过分。"
-                                "不要使用emoji，保持简洁。 | 你也可以直接回复 ddd 就知道 d | 你也可以回复 {sender_name} d 已记录 《 来反击发送者，不要每次都发一样的哦。"
-                            ),
-                        )
-                        if llm_resp and llm_resp.completion_text:
-                            yield MessageEventResult().message(llm_resp.completion_text)
-                        else:
-                            # Fallback to simple message if LLM fails
-                            yield MessageEventResult().message(f"好的， {sender_name} d 已为您记录")
-                    except Exception as e:
-                        logger.error(f"Failed to generate LLM easter egg: {e}")
-                        # Fallback to simple message
-                        yield MessageEventResult().message(f"好的， {sender_name} d 已为您记录")
-                    event.stop_event()
+                yield MessageEventResult().message(
+                    f"❌ 我还不知道什么是 {boss_input} 呢\n\n"
+                    f"请输入 /boss bosses 来查看所有支持的boss名称"
+                )
+                event.stop_event()
             return
 
         try:
@@ -354,6 +333,36 @@ class BossTimer(Star):
         )
         yield MessageEventResult().message(message)
 
+    @boss_command_group.command("bosses", alias={"all", "可用", "支持", "名单"})
+    async def list_all_bosses(self, event: AstrMessageEvent):
+        """List all supported boss names and aliases"""
+        if not self.bosses:
+            yield MessageEventResult().message("❌ 没有加载任何boss配置")
+            return
+
+        lines = ["📋 所有支持的Boss列表：\n"]
+
+        # Sort bosses by display name
+        sorted_bosses = sorted(
+            self.bosses.items(),
+            key=lambda x: x[1].get("display_name", x[0])
+        )
+
+        for boss_key, boss_data in sorted_bosses:
+            display_name = boss_data.get("display_name", boss_key)
+            aliases = boss_data.get("aliases", [])
+            emoji = boss_data.get("emoji", "")
+
+            # Format: emoji + display_name + (aliases)
+            alias_str = "、".join(aliases) if aliases else boss_key
+            lines.append(f"{emoji} {display_name}")
+            lines.append(f"   别名: {alias_str}")
+
+        lines.append("\n使用方法：<boss名或别名> d")
+        lines.append("例如：wdk d 或 维京海盗 d")
+
+        yield MessageEventResult().message("\n".join(lines))
+
     @boss_command_group.command("cancel", alias={"取消", "remove", "rm", "del"})
     async def cancel_timer(self, event: AstrMessageEvent, boss_input: str):
         """Cancel a boss timer. Usage: /boss cancel wdk"""
@@ -363,7 +372,7 @@ class BossTimer(Star):
         boss_name = boss_config.get_boss_by_alias(boss_input_lower, self.boss_alias_map)
         if not boss_name:
             yield MessageEventResult().message(
-                f"❌ 未找到boss：{boss_input}\n使用 /boss list 查看所有计时器"
+                f"❌ 未找到boss：{boss_input}\n使用 /boss bosses 查看所有支持的boss"
             )
             return
 
