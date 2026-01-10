@@ -168,11 +168,11 @@ class BossTimer(Star):
                             yield MessageEventResult().message(llm_resp.completion_text)
                         else:
                             # Fallback to simple message if LLM fails
-                            yield MessageEventResult().message(f"{sender_name} d 已记录")
+                            yield MessageEventResult().message(f"好的， {sender_name} d 已为您记录")
                     except Exception as e:
                         logger.error(f"Failed to generate LLM easter egg: {e}")
                         # Fallback to simple message
-                        yield MessageEventResult().message(f"{sender_name} d 已记录")
+                        yield MessageEventResult().message(f"好的， {sender_name} d 已为您记录")
             return
 
         try:
@@ -573,17 +573,17 @@ class BossTimer(Star):
 
         yield MessageEventResult().message("\n".join(lines))
 
-    @filter.event_message_type(filter.EventMessageType.ALL)
+    @filter.regex(r"^/map\s+(.+)$")
     async def handle_map_query(self, event: AstrMessageEvent):
         """处理直接的地图查询（例如：/map 森林）"""
         message_str = event.get_message_str().strip()
 
-        # Check if it's a map command without subcommand
-        if not message_str.startswith("/map "):
+        # Extract map input after /map
+        match = re.match(r"^/map\s+(.+)$", message_str)
+        if not match:
             return
 
-        # Extract map input after /map
-        map_input = message_str[5:].strip()
+        map_input = match.group(1).strip()
 
         # Skip if it's already a known subcommand
         if map_input.lower() in ["list", "ls", "列表", "地图", "help", "帮助"]:
