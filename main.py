@@ -3,7 +3,6 @@ TWOM Boss Timer Plugin for AstrBot
 Tracks boss respawn times and sends automatic reminders
 """
 
-import random
 import re
 from datetime import datetime
 from pathlib import Path
