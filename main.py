@@ -122,7 +122,7 @@ class BossTimer(Star):
         except Exception as e:
             logger.error(f"Failed to send reminder to {umo}: {e}")
 
-    @filter.event_message_type(filter.EventMessageType.ALL)
+    @filter.event_message_type(filter.EventMessageType.ALL, priority=100)
     async def handle_boss_death(self, event: AstrMessageEvent):
         """Handle boss death recording. Pattern: <boss_name> d [time]"""
         msg = event.get_message_str().strip()
@@ -260,7 +260,7 @@ class BossTimer(Star):
         event.stop_event()  # Stop event BEFORE yield
         yield MessageEventResult().message(message)
 
-    @filter.event_message_type(filter.EventMessageType.ALL)
+    @filter.event_message_type(filter.EventMessageType.ALL, priority=100)
     async def handle_shortcut_commands(self, event: AstrMessageEvent):
         """Handle shortcut commands like 'bl', 'hz' for quick access"""
         msg = event.get_message_str().strip().lower()
@@ -580,7 +580,7 @@ class BossTimer(Star):
 
         yield MessageEventResult().message("\n".join(lines))
 
-    @filter.regex(r"^/map\s+(.+)$")
+    @filter.regex(r"^/map\s+(.+)$", priority=100)
     async def handle_map_query(self, event: AstrMessageEvent):
         """处理直接的地图查询（例如：/map 森林）"""
         message_str = event.get_message_str().strip()
