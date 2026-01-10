@@ -164,8 +164,8 @@ class BossTimer(Star):
                                 "不要使用emoji，保持简洁。 | 你也可以回复 ddd 就知道 d | 你也可以回复 {sender_name} d 已记录 《 来反击发送者，不要每次都发一样的哦。"
                             ),
                         )
-                        if llm_resp and llm_resp.completion:
-                            yield MessageEventResult().message(llm_resp.completion)
+                        if llm_resp and llm_resp.completion_text:
+                            yield MessageEventResult().message(llm_resp.completion_text)
                         else:
                             # Fallback to simple message if LLM fails
                             yield MessageEventResult().message(f"{sender_name} d 已记录")
