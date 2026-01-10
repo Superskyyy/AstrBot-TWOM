@@ -33,7 +33,7 @@
     "emoji": "🐢"
   },
   "pboss": {
-    "display_name": "海盗 Boss",
+    "display_name": "海盗 PirateBoss",
     "aliases": [
       "pboss"
     ],
@@ -43,7 +43,7 @@
     "emoji": "🏴‍☠️"
   },
   "黑天": {
-    "display_name": "黑天",
+    "display_name": "黑天 BlackSky",
     "aliases": [
       "黑天",
       "blacksky"
@@ -54,7 +54,7 @@
     "emoji": "🐼🛠️"
   },
   "juno": {
-    "display_name": "朱诺",
+    "display_name": "朱诺 BlackJuno",
     "aliases": [
       "juno",
       "朱诺",
@@ -66,7 +66,7 @@
     "emoji": "🐼"
   },
   "bs": {
-    "display_name": "黑骨",
+    "display_name": "黑骨 BlackSkull",
     "aliases": [
       "bs",
       "黑骨"
@@ -162,7 +162,7 @@
     "emoji": "🐾"
   },
   "caligo": {
-    "display_name": "Caligo",
+    "display_name": "龙 Caligo",
     "aliases": [
       "caligo",
       "龙",
@@ -174,7 +174,7 @@
     "emoji": "🐲"
   },
   "ntr": {
-    "display_name": "NTR",
+    "display_name": "牛头人 Illust",
     "aliases": [
       "ntr",
       "牛头人"
@@ -185,7 +185,7 @@
     "emoji": "🐮🐮🐮🐮"
   },
   "bmm": {
-    "display_name": "白发魔女",
+    "display_name": "白发魔女 Bigmama",
     "aliases": [
       "bmm"
     ],
@@ -228,6 +228,17 @@
     "respawn_seconds": 0,
     "emoji": "🔮🔮🔮"
   },
+  "bigfoot": {
+    "display_name": "大脚 Bigfoot",
+    "aliases": [
+      "bigfoot",
+      "BF"
+    ],
+    "respawn_hours": 7,
+    "respawn_minutes": 55,
+    "respawn_seconds": 0,
+    "emoji": "🔮🔮🔮"
+  },
   "darl": {
     "display_name": "Darlene",
     "aliases": [
@@ -244,7 +255,18 @@
     "aliases": [
       "uk"
     ],
-    "respawn_hours": 24,
+    "respawn_hours": 48,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "👿👿👿"
+  },
+  "barslaf": {
+    "display_name": "雪球 Barslaf",
+    "aliases": [
+      "barslaf",
+      "雪球"
+    ],
+    "respawn_hours": 48,
     "respawn_minutes": 0,
     "respawn_seconds": 0,
     "emoji": "👿👿👿"
@@ -261,7 +283,7 @@
     "emoji": "🐻‍❄️🐻‍❄️🐻‍❄️"
   },
   "黑狗": {
-    "display_name": "黑狗",
+    "display_name": "黑狗 Zealot",
     "aliases": [
       "黑狗"
     ],
@@ -271,21 +293,10 @@
     "emoji": "🐶⚔️"
   },
   "steampunk": {
-    "display_name": "蒸汽朋克",
+    "display_name": "蒸汽朋克 Streampunk",
     "aliases": [
       "steampunk",
       "蒸汽朋克"
-    ],
-    "respawn_hours": 2,
-    "respawn_minutes": 30,
-    "respawn_seconds": 0,
-    "emoji": "🤖🩸"
-  },
-  "titanium": {
-    "display_name": "钛合金魔像",
-    "aliases": [
-      "titan",
-      "钛"
     ],
     "respawn_hours": 2,
     "respawn_minutes": 30,
@@ -304,7 +315,7 @@
     "emoji": "🟢🌪️🟢"
   },
   "tank": {
-    "display_name": "Tank",
+    "display_name": "坦克 Tank",
     "aliases": [
       "tank"
     ],
@@ -324,9 +335,12 @@
     "emoji": "🐦"
   },
   "泰坦": {
-    "display_name": "泰坦",
+    "display_name": "钛合金魔像 Titanium Golem",
     "aliases": [
-      "泰坦"
+      "泰坦",
+      "golem",
+      "钛合金魔像",
+      "titanium"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 58,
@@ -344,9 +358,10 @@
     "emoji": "🎆"
   },
   "沙墓": {
-    "display_name": "沙墓",
+    "display_name": "沙墓 SandGrave",
     "aliases": [
-      "沙墓"
+      "沙墓",
+      "SG"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 20,
@@ -354,9 +369,10 @@
     "emoji": "🏜️🪦"
   },
   "大眼": {
-    "display_name": "大眼",
+    "display_name": "大眼 Elder Beholder",
     "aliases": [
-      "大眼"
+      "大眼",
+      "Elder"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 20,
@@ -364,7 +380,7 @@
     "emoji": "🏜️👁️"
   },
   "shaaack": {
-    "display_name": "Shaaack",
+    "display_name": "沙沙沙 Shaaack",
     "aliases": [
       "shack",
       "沙沙沙"
@@ -395,7 +411,7 @@
     "emoji": "🏜️🦈"
   },
   "rb": {
-    "display_name": "RB",
+    "display_name": "红蜜蜂 RB",
     "aliases": [
       "rb"
     ],
@@ -416,7 +432,7 @@
     "emoji": "💰🚶"
   },
   "bm": {
-    "display_name": "BM",
+    "display_name": "大老鼠 BM",
     "aliases": [
       "bm"
     ],
@@ -426,7 +442,7 @@
     "emoji": "🐹🐹🐹"
   },
   "lm": {
-    "display_name": "LM",
+    "display_name": "轻微神经病 Lesser Madman",
     "aliases": [
       "lm",
       "神经病",
@@ -438,7 +454,7 @@
     "emoji": "🤕🤕🤕"
   },
   "ms": {
-    "display_name": "心声",
+    "display_name": "心声 MindScream",
     "aliases": [
       "ms",
       "心声"
@@ -449,7 +465,7 @@
     "emoji": "🤕🤕🤕"
   },
   "7": {
-    "display_name": "7",
+    "display_name": "7 Fox",
     "aliases": [
       "7"
     ],
@@ -459,7 +475,7 @@
     "emoji": "🦊🔒"
   },
   "绿狐狸": {
-    "display_name": "777尾狐",
+    "display_name": "777 Fox",
     "aliases": [
       "绿狐狸",
       "777"
@@ -470,7 +486,7 @@
     "emoji": "🟢🦊"
   },
   "d4": {
-    "display_name": "盾4",
+    "display_name": "Shield 4",
     "aliases": [
       "盾4",
       "d4"
@@ -481,7 +497,7 @@
     "emoji": "🦹‍♂️🛡️"
   },
   "花": {
-    "display_name": "花",
+    "display_name": "777 Flower",
     "aliases": [
       "花"
     ],
@@ -491,7 +507,7 @@
     "emoji": "🥀"
   },
   "火狐": {
-    "display_name": "火狐",
+    "display_name": "Fire Fox",
     "aliases": [
       "火狐"
     ],
@@ -511,9 +527,11 @@
     "emoji": "🦅🔒"
   },
   "白鸟": {
-    "display_name": "白鸟",
+    "display_name": "白乌鸦 White Crow",
     "aliases": [
-      "白鸟"
+      "白鸟",
+      "白乌鸦",
+      "white crow"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 30,
@@ -521,9 +539,10 @@
     "emoji": "⚪🦅"
   },
   "鬼蛇": {
-    "display_name": "鬼蛇",
+    "display_name": "鬼蛇 Ghost Snake",
     "aliases": [
-      "鬼蛇"
+      "鬼蛇",
+      "GS"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 30,
@@ -531,7 +550,7 @@
     "emoji": "👻🦎🛡️"
   },
   "大树": {
-    "display_name": "大树",
+    "display_name": "大树 Corrupt Forest Keeper",
     "aliases": [
       "大树",
       "树",
@@ -575,7 +594,7 @@
     "emoji": "🧪"
   },
   "deer": {
-    "display_name": "鹿",
+    "display_name": "鹿 Actaemon",
     "aliases": [
       "deer",
       "鹿"
@@ -586,10 +605,11 @@
     "emoji": "🦌🦌🦌"
   },
   "gpig": {
-    "display_name": "灰猪",
+    "display_name": "灰猪 Flower Bulldozer",
     "aliases": [
       "gpig",
-      "灰猪"
+      "灰猪",
+      "FB"
     ],
     "respawn_hours": 1,
     "respawn_minutes": 0,
@@ -597,12 +617,12 @@
     "emoji": "🐖"
   },
   "ypig": {
-    "display_name": "黄猪",
+    "display_name": "黄猪 Mushroom Bulldozer",
     "aliases": [
       "ypig",
-      "bpig",
       "黄猪",
-      "棕猪"
+      "棕猪",
+      "MB"
     ],
     "respawn_hours": 1,
     "respawn_minutes": 0,
@@ -610,9 +630,11 @@
     "emoji": "🐖"
   },
   "熊": {
-    "display_name": "艾伊尤的护卫兵",
+    "display_name": "艾伊尤的护卫兵 Aiyo's Protector",
     "aliases": [
-      "熊"
+      "熊",
+      "Bear",
+      "Aiyo"
     ],
     "respawn_hours": 72,
     "respawn_minutes": 0,
@@ -622,9 +644,8 @@
   "mush": {
     "display_name": "莫提蘑菇",
     "aliases": [
-      "蘑菇",
-      "mg",
-      "mush"
+      "Morty",
+      "莫提"
     ],
     "respawn_hours": 1,
     "respawn_minutes": 0,
@@ -643,7 +664,7 @@
     "emoji": "🦋"
   },
   "sl": {
-    "display_name": "索尔里奇巫妖",
+    "display_name": "索尔里奇巫妖 Soul Lich",
     "aliases": [
       "sl",
       "lich",
@@ -677,7 +698,7 @@
     "emoji": "🪄"
   },
   "恒河豚": {
-    "display_name": "恒河豚",
+    "display_name": "恒河豚 Platanista",
     "aliases": [
       "恒河豚",
       "whale",
@@ -689,7 +710,7 @@
     "emoji": "🐋"
   },
   "rng": {
-    "display_name": "软泥怪",
+    "display_name": "软泥怪 Rotten Pudding",
     "aliases": [
       "软泥怪",
       "rng",
@@ -702,7 +723,7 @@
     "emoji": "🐋"
   },
   "活动pf": {
-    "display_name": "活动PF",
+    "display_name": "活动 PF",
     "aliases": [
       "活动pf",
       "活动mod"
@@ -713,7 +734,7 @@
     "emoji": "🎉"
   },
   "活动hsp": {
-    "display_name": "活动HSP",
+    "display_name": "活动 HSP",
     "aliases": [
       "活动hsp"
     ],
@@ -723,7 +744,7 @@
     "emoji": "🎉"
   },
   "活动beach": {
-    "display_name": "活动Beach",
+    "display_name": "活动 Beach",
     "aliases": [
       "活动beach"
     ],
