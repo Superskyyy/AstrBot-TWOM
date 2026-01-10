@@ -597,7 +597,7 @@ class BossTimer(Star):
 
         yield MessageEventResult().message("\n".join(lines))
 
-    @filter.regex(r"^/map\s+(.+)$", priority=100)
+    @filter.regex(r"^/map\s+(.+)$")
     async def handle_map_query(self, event: AstrMessageEvent):
         """处理直接的地图查询（例如：/map 森林）"""
         message_str = event.get_message_str().strip()
@@ -616,6 +616,9 @@ class BossTimer(Star):
         # Try to show the map
         async for result in self._send_map(event, map_input):
             yield result
+
+        # Stop event propagation to prevent LLM from responding
+        event.stop_event()
 
     async def _send_map(self, event: AstrMessageEvent, map_input: str):
         """Internal method to send map image"""
