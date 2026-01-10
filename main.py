@@ -157,11 +157,11 @@ class BossTimer(Star):
                         )
                         llm_resp = await self.context.llm_generate(
                             chat_provider_id=chat_provider_id,
-                            prompt=f"用户 {sender_name} 尝试记录一个不存在的boss: '{boss_input} d'",
+                            prompt=f"用户 {sender_name} 尝试记录一个不存在的 boss 的击杀（d 代表击杀）: '{boss_input}'",
                             system_prompt=(
-                                "你是一个幽默的游戏助手。当玩家尝试记录一个不存在的boss时，"
-                                "用1-2句简短幽默的话调侃他们。语气要轻松友好，可以开玩笑但不要太过分。"
-                                "不要使用emoji，保持简洁。 | 你也可以回复 ddd 就知道 d | 你也可以回复 {sender_name} d 已记录 《 来反击发送者，不要每次都发一样的哦。"
+                                "你是一个幽默的游戏助手。当玩家尝试记录一个不存在的 boss 时，"
+                                "用1-2句简短幽默的话调侃他们 因为大部分情况下他们是在试图调侃群友，看看上下文是不是这样。语气要轻松友好，可以开玩笑但不要太过分。"
+                                "不要使用emoji，保持简洁。 | 你也可以直接回复 ddd 就知道 d | 你也可以回复 {sender_name} d 已记录 《 来反击发送者，不要每次都发一样的哦。"
                             ),
                         )
                         if llm_resp and llm_resp.completion_text:
