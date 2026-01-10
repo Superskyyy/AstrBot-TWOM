@@ -129,11 +129,8 @@ class BossTimer(Star):
         # Normalize spaces (replace full-width spaces and multiple spaces with single space)
         msg = re.sub(r'\s+', ' ', msg.replace('　', ' '))
 
-        if " d" not in msg.lower():
-            return
-
-        # Parse boss command
-        match = re.match(r"^(\S+)\s+d(?:\s+(.+))?$", msg, re.IGNORECASE)
+        # Parse boss command (支持 "大树 d" 和 "大树d" 两种格式)
+        match = re.match(r"^(\S+)\s*d(?:\s+(.+))?$", msg, re.IGNORECASE)
         if not match:
             logger.debug(f"Boss death pattern not matched: '{msg}'")
             return
