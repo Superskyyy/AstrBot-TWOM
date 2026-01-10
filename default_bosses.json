@@ -688,6 +688,19 @@
     "respawn_seconds": 0,
     "emoji": "🐋"
   },
+  "rng": {
+    "display_name": "软泥怪",
+    "aliases": [
+      "软泥怪",
+      "rng",
+      "腐烂的布丁",
+      "pudding"
+    ],
+    "respawn_hours": 168,
+    "respawn_minutes": 0,
+    "respawn_seconds": 0,
+    "emoji": "🐋"
+  },
   "活动pf": {
     "display_name": "活动PF",
     "aliases": [

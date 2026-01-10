@@ -126,12 +126,16 @@ class BossTimer(Star):
     async def handle_boss_death(self, event: AstrMessageEvent):
         """Handle boss death recording. Pattern: <boss_name> d [time]"""
         msg = event.get_message_str().strip()
+        # Normalize spaces (replace full-width spaces and multiple spaces with single space)
+        msg = re.sub(r'\s+', ' ', msg.replace('　', ' '))
+
         if " d" not in msg.lower():
             return
 
         # Parse boss command
         match = re.match(r"^(\S+)\s+d(?:\s+(.+))?$", msg, re.IGNORECASE)
         if not match:
+            logger.debug(f"Boss death pattern not matched: '{msg}'")
             return
 
         boss_input = match.group(1).lower()
@@ -173,26 +177,32 @@ class BossTimer(Star):
                         logger.error(f"Failed to generate LLM easter egg: {e}")
                         # Fallback to simple message
                         yield MessageEventResult().message(f"好的， {sender_name} d 已为您记录")
+                    event.stop_event()
             return
 
         try:
             death_time = time_utils.parse_death_time(match.group(2) or "", self.timezone)
-        except ValueError:
+        except ValueError as e:
+            logger.debug(f"Failed to parse death time for '{msg}': {e}")
             return
 
         # Check permissions
         group_id = event.get_group_id()
         if group_id:
             if not permission.is_group_enabled(group_id, self.config):
+                logger.debug(f"Group {group_id} not enabled for boss timer")
                 return
         else:
-            if not permission.is_user_enabled(self._get_user_id(event.unified_msg_origin), self.config):
+            user_id = self._get_user_id(event.unified_msg_origin)
+            if not permission.is_user_enabled(user_id, self.config):
+                logger.debug(f"User {user_id} not enabled for boss timer in private chat")
                 return
 
         # Check group boss filter
         if group_id:
             allowed_bosses = permission.get_allowed_bosses_for_group(group_id, self.config)
             if allowed_bosses and boss_name not in allowed_bosses:
+                logger.debug(f"Boss {boss_name} not allowed in group {group_id}. Allowed: {allowed_bosses}")
                 return
 
         # Calculate spawn time and create timer
@@ -247,8 +257,8 @@ class BossTimer(Star):
             self.show_secondary,
         )
 
+        event.stop_event()  # Stop event BEFORE yield
         yield MessageEventResult().message(message)
-        event.stop_event()
 
     @filter.event_message_type(filter.EventMessageType.ALL)
     async def handle_shortcut_commands(self, event: AstrMessageEvent):
@@ -257,10 +267,10 @@ class BossTimer(Star):
 
         # Check if it's a list shortcut
         if msg in ["bl", "hz", "汇总", "匯總"]:
+            event.stop_event()  # Stop event BEFORE yield
             # Call the list timers logic
             async for result in self.list_timers(event):
                 yield result
-            event.stop_event()
             return
 
     @filter.command_group("boss")
@@ -586,6 +596,7 @@ class BossTimer(Star):
         if map_input.lower() in ["list", "ls", "列表", "地图", "help", "帮助"]:
             return
 
+        event.stop_event()  # Stop event BEFORE yield
         # Try to show the map
         async for result in self._send_map(event, map_input):
             yield result
