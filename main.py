@@ -257,7 +257,6 @@ class BossTimer(Star):
             self.show_secondary,
         )
 
-        event.stop_event()  # Stop event BEFORE yield
         yield MessageEventResult().message(message)
 
     @filter.event_message_type(filter.EventMessageType.ALL, priority=100)
@@ -267,7 +266,6 @@ class BossTimer(Star):
 
         # Check if it's a list shortcut
         if msg in ["bl", "hz", "汇总", "匯總"]:
-            event.stop_event()  # Stop event BEFORE yield
             # Call the list timers logic
             async for result in self.list_timers(event):
                 yield result
@@ -596,7 +594,6 @@ class BossTimer(Star):
         if map_input.lower() in ["list", "ls", "列表", "地图", "help", "帮助"]:
             return
 
-        event.stop_event()  # Stop event BEFORE yield
         # Try to show the map
         async for result in self._send_map(event, map_input):
             yield result
