@@ -54,6 +54,11 @@ def build_alias_map(bosses: Dict) -> Dict[str, str]:
         # Boss name itself is an alias
         alias_map[boss_name.lower()] = boss_name
 
+        # Add display name as alias
+        display_name = boss_data.get("display_name")
+        if display_name:
+            alias_map[display_name.lower()] = boss_name
+
         # Add all configured aliases
         for alias in boss_data.get("aliases", []):
             alias_map[alias.lower()] = boss_name
