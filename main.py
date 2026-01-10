@@ -197,14 +197,21 @@ class BossTimer(Star):
 
         # Calculate spawn time and create timer
         spawn_time = boss_config.calculate_spawn_time(boss_name, death_time, self.bosses)
-        timestamp = int(death_time.timestamp())
 
+        # Create timer_id without timestamp (so same boss overwrites)
         if group_id:
-            timer_id = f"{group_id}_{boss_name}_{timestamp}"
+            timer_id = f"{group_id}_{boss_name}"
             user_id = None
         else:
             user_id = self._get_user_id(event.unified_msg_origin)
-            timer_id = f"private_{user_id}_{boss_name}_{timestamp}"
+            timer_id = f"private_{user_id}_{boss_name}"
+
+        # Remove old timer and scheduled jobs if exists
+        if timer_id in self.timers:
+            # Cancel all scheduled reminder jobs for this timer
+            for job in self.scheduler.get_jobs():
+                if job.id.startswith(f"reminder_{timer_id}_"):
+                    job.remove()
 
         # Save timer
         self.timers[timer_id] = {
@@ -415,28 +422,18 @@ class BossTimer(Star):
 
         current_user_id = None if group_id else self._get_user_id(event.unified_msg_origin)
 
-        # Remove existing timer for this boss (if any)
-        for timer_id, timer_data in list(self.timers.items()):
-            if timer_data.get("boss") != boss_name:
-                continue
-
-            location_match = False
-            if group_id:
-                location_match = timer_data.get("group_id") == group_id
-            else:
-                location_match = timer_data.get("user_id") == current_user_id
-
-            if location_match:
-                scheduler.cancel_reminder_jobs(self.scheduler, timer_id)
-                del self.timers[timer_id]
-
-        # Create new timer
+        # Create timer_id without timestamp (so same boss overwrites)
         if group_id:
-            timer_id = f"{group_id}_{boss_name}_{int(spawn_time.timestamp())}"
+            timer_id = f"{group_id}_{boss_name}"
             umo = f"qq_group_{group_id}"
         else:
-            timer_id = f"private_{current_user_id}_{boss_name}_{int(spawn_time.timestamp())}"
+            timer_id = f"private_{current_user_id}_{boss_name}"
             umo = event.unified_msg_origin
+
+        # Remove old timer and scheduled jobs if exists
+        if timer_id in self.timers:
+            scheduler.cancel_reminder_jobs(self.scheduler, timer_id)
+            del self.timers[timer_id]
 
         self.timers[timer_id] = {
             "boss": boss_name,
