@@ -134,8 +134,20 @@ class BossTimer(Star):
         if not match:
             return
 
-        boss_name = boss_config.get_boss_by_alias(match.group(1).lower(), self.boss_alias_map)
+        boss_input = match.group(1).lower()
+        boss_name = boss_config.get_boss_by_alias(boss_input, self.boss_alias_map)
         if not boss_name:
+            # Easter egg: if pattern matches but no boss found
+            # Avoid matching common English phrases like "is day", "world", etc.
+            common_words = {"is", "was", "has", "had", "world", "good", "bad", "old", "new", "should", "would", "could"}
+
+            # Only trigger easter egg if:
+            # 1. Input is at least 2 characters (avoid single letters)
+            # 2. Not a common English word that might appear in phrases
+            if len(boss_input) >= 2 and boss_input not in common_words:
+                sender_name = event.get_sender_name()
+                if sender_name:
+                    yield MessageEventResult().message(f"{sender_name} d 已记录")
             return
 
         try:
@@ -477,7 +489,7 @@ class BossTimer(Star):
             f"✅ Boss计时器已重置\n\n"
             f"• 清除计时器：{timer_count} 个\n"
             f"• 取消定时任务：{cancelled_jobs} 个\n\n"
-            f"所有boss记录（群聊+私聊）已被清空"
+            f"所有boss记录已被清空"
         )
         yield MessageEventResult().message(message)
 
