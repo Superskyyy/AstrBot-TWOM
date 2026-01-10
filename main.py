@@ -8,6 +8,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, Optional
 
+import zhconv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from astrbot.api import logger
@@ -126,6 +127,8 @@ class BossTimer(Star):
     async def handle_boss_death(self, event: AstrMessageEvent):
         """Handle boss death recording. Pattern: <boss_name> d [time]"""
         msg = event.get_message_str().strip()
+        # Convert Traditional Chinese to Simplified Chinese
+        msg = zhconv.convert(msg, 'zh-cn')
         # Normalize spaces (replace full-width spaces and multiple spaces with single space)
         msg = re.sub(r'\s+', ' ', msg.replace('　', ' '))
 
@@ -281,7 +284,9 @@ class BossTimer(Star):
     @filter.event_message_type(filter.EventMessageType.ALL, priority=100)
     async def handle_shortcut_commands(self, event: AstrMessageEvent):
         """Handle shortcut commands like 'bl', 'hz' for quick access"""
-        msg = event.get_message_str().strip().lower()
+        msg = event.get_message_str().strip()
+        msg = zhconv.convert(msg, 'zh-cn')
+        msg = msg.lower()
 
         # Check if it's a list shortcut
         if msg in ["bl", "hz", "汇总", "匯總"]:
@@ -601,6 +606,7 @@ class BossTimer(Star):
     async def handle_map_query(self, event: AstrMessageEvent):
         """处理直接的地图查询（例如：/map 森林）"""
         message_str = event.get_message_str().strip()
+        message_str = zhconv.convert(message_str, 'zh-cn')
 
         # Extract map input after /map
         match = re.match(r"^/map\s+(.+)$", message_str)
