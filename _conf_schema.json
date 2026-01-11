@@ -24,11 +24,11 @@
     "hint": "开启后，只有在白名单中的群组才会响应boss计时命令"
   },
   "whitelist_groups": {
-    "description": "白名单群组列表",
+    "description": "白名单群组列表 - 集合1",
     "type": "list",
     "items": { "type": "string" },
     "default": [],
-    "hint": "只有这些群组会响应boss计时命令。需要先开启 <启用群组白名单>。格式：[\"123456789\", \"987654321\"]"
+    "hint": "集合1的群组列表。需要先开启 <启用群组白名单>。格式：[\"123456789\", \"987654321\"]"
   },
   "whitelist_users": {
     "description": "白名单用户列表（私聊）",
@@ -56,11 +56,25 @@
     "hint": "逗号分隔，如 3 表示提前3分钟提醒，或 30,15,3 表示多个时间点提醒"
   },
   "core_groups": {
-    "description": "核心群组列表（可选）",
+    "description": "核心群组列表 - 集合1（可选）",
     "type": "list",
     "items": { "type": "string" },
     "default": [],
-    "hint": "【可选】核心群可以查看所有群的boss计时器（只收到自己群的提醒）。适合作为主boss管理群"
+    "hint": "【可选】核心群可以查看集合1内所有群的boss计时器（只收到自己群的提醒）。适合作为主boss管理群"
+  },
+  "whitelist_groups_2": {
+    "description": "白名单群组列表 - 集合2",
+    "type": "list",
+    "items": { "type": "string" },
+    "default": [],
+    "hint": "集合2的群组列表，与集合1完全隔离。格式：[\"123456789\", \"987654321\"]"
+  },
+  "core_groups_2": {
+    "description": "核心群组列表 - 集合2（可选）",
+    "type": "list",
+    "items": { "type": "string" },
+    "default": [],
+    "hint": "【可选】核心群可以查看集合2内所有群的boss计时器（只收到自己群的提醒）"
   },
   "custom_bosses_enabled": {
     "description": "启用自定义boss配置",
