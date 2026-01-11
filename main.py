@@ -138,8 +138,10 @@ class BossTimer(Star):
         time_part = None
 
         # 先尝试有空格的版本 "xxx d"
+        has_space_before_d = False
         match_with_space = re.match(r"^(\S+)\s+d(?:\s+(.+))?$", msg_lower)
         if match_with_space:
+            has_space_before_d = True
             boss_input = match_with_space.group(1)
             time_part = match_with_space.group(2)
             boss_name = boss_config.get_boss_by_alias(boss_input, self.boss_alias_map)
@@ -163,7 +165,11 @@ class BossTimer(Star):
                 logger.debug(f"Boss death pattern not matched: '{msg}'")
                 return
         if not boss_name:
-            # Boss not found - show fixed message
+            # Boss not found - only show error message if there was a space before 'd'
+            # e.g. "mushland d" should show error, but "mushland" (no space) should be silent
+            if not has_space_before_d:
+                return
+
             # Avoid matching common English phrases like "is day", "world", etc.
             common_words = {"is", "was", "has", "had", "world", "good", "bad", "old", "new", "should", "would", "could"}
 
