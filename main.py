@@ -415,8 +415,8 @@ class BossTimer(Star):
                 f"❌ 未找到 {boss_input} 的活跃计时器\n使用 /boss list 查看所有计时器"
             )
 
-    @boss_command_group.command("add", alias={"添加", "补充"})
-    async def cmd_add_boss_timer(self, event: AstrMessageEvent, *args, **kwargs):
+    @boss_command_group.command("set", alias={"add", "添加", "补充"})
+    async def cmd_set_boss_timer(self, event: AstrMessageEvent, *args, **kwargs):
         """
         Manually add a boss timer with specified spawn time.
         Usage: /boss add wdk 15:30, /boss add bmm 01-11 08:00
