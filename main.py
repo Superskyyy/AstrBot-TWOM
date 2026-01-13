@@ -416,15 +416,14 @@ class BossTimer(Star):
             )
 
     @boss_command_group.command("set", alias={"add", "添加", "补充"})
-    async def cmd_set_boss_timer(self, event: AstrMessageEvent, *args, **kwargs):
+    async def cmd_set_boss_timer(self, event: AstrMessageEvent, boss_input: str, spawn_time: str):
         """
         Manually add a boss timer with specified spawn time.
-        Usage: /boss add wdk 15:30, /boss add bmm 01-11 08:00
+        Usage: /boss set uk 15:30
+        Note: For date+time, use /boss set uk 01-14_08:00 (underscore instead of space)
         """
-        # Extract arguments: first arg is boss_input, rest are time parts
-        boss_input = args[0] if args else kwargs.get("boss_input", "")
-        time_parts = args[1:] if len(args) > 1 else kwargs.get("time_parts", ())
-        spawn_time_str = " ".join(time_parts) if time_parts else ""
+        # Replace underscore with space for date-time parsing
+        spawn_time_str = spawn_time.replace("_", " ")
 
         if not boss_input or not spawn_time_str:
             yield MessageEventResult().message(
