@@ -416,7 +416,7 @@ class BossTimer(Star):
             )
 
     @boss_command_group.command("add", alias={"添加", "补充"})
-    async def add_timer(self, event: AstrMessageEvent, *args, **kwargs):
+    async def cmd_add_boss_timer(self, event: AstrMessageEvent, *args, **kwargs):
         """
         Manually add a boss timer with specified spawn time.
         Usage: /boss add wdk 15:30, /boss add bmm 01-11 08:00
