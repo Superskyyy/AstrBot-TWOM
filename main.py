@@ -14,6 +14,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from astrbot.api import logger
 from astrbot.api.event import AstrMessageEvent, filter
 from astrbot.api.star import Context, Star, register
+from astrbot.core.message.components import Node, Nodes, Plain
 from astrbot.core.message.message_event_result import MessageEventResult
 from astrbot.core.star.filter.command import GreedyStr
 from astrbot.core.utils.astrbot_path import get_astrbot_data_path
@@ -342,12 +343,10 @@ class BossTimer(Star):
 
     @boss_command_group.command("bosses", alias={"all", "可用", "支持", "名单"})
     async def list_all_bosses(self, event: AstrMessageEvent):
-        """List all supported boss names and aliases"""
+        """List all supported boss names and aliases as a forward card message"""
         if not self.bosses:
             yield MessageEventResult().message("❌ 没有加载任何boss配置")
             return
-
-        lines = ["📋 所有支持的Boss列表：\n"]
 
         # Sort bosses by display name
         sorted_bosses = sorted(
@@ -355,20 +354,67 @@ class BossTimer(Star):
             key=lambda x: x[1].get("display_name", x[0])
         )
 
+        # Create nodes for forward message
+        nodes = []
+        bot_id = event.get_self_id() or "0"
+
         for boss_key, boss_data in sorted_bosses:
             display_name = boss_data.get("display_name", boss_key)
             aliases = boss_data.get("aliases", [])
             emoji = boss_data.get("emoji", "")
 
-            # Format: emoji + display_name + (aliases)
-            alias_str = "、".join(aliases) if aliases else boss_key
-            lines.append(f"{emoji} {display_name}")
-            lines.append(f"   别名: {alias_str}")
+            # Format respawn time
+            hours = boss_data.get("respawn_hours", 0)
+            minutes = boss_data.get("respawn_minutes", 0)
+            seconds = boss_data.get("respawn_seconds", 0)
+            respawn_parts = []
+            if hours > 0:
+                respawn_parts.append(f"{hours}h")
+            if minutes > 0:
+                respawn_parts.append(f"{minutes}m")
+            if seconds > 0:
+                respawn_parts.append(f"{seconds}s")
+            respawn_str = " ".join(respawn_parts) if respawn_parts else "未知"
 
-        lines.append("\n使用方法：<boss名或别名> d")
-        lines.append("例如：wdk d 或 维京海盗 d")
+            # Format aliases (limit to 5 for readability)
+            alias_display = aliases[:5] if len(aliases) > 5 else aliases
+            alias_str = " / ".join(alias_display)
+            if len(aliases) > 5:
+                alias_str += f" (+{len(aliases) - 5})"
 
-        yield MessageEventResult().message("\n".join(lines))
+            # Create node content with cleaner format and spacing
+            content_text = (
+                f"{emoji} {display_name}\n"
+                f"\n"
+                f"⏱  刷新: {respawn_str}\n"
+                f"\n"
+                f"📝  别名: {alias_str}"
+            )
+            node = Node(
+                content=[Plain(content_text)],
+                uin=str(bot_id),
+                name=f"{emoji} {display_name}"
+            )
+            nodes.append(node)
+
+        # Add usage hint as the last node
+        usage_node = Node(
+            content=[Plain(
+                "📖 使用方法\n"
+                "\n"
+                "记录死亡:  <boss名> d\n"
+                "\n"
+                "例如:  wdk d  /  大树 d"
+            )],
+            uin=str(bot_id),
+            name="📖 使用说明"
+        )
+        nodes.append(usage_node)
+
+        # Create forward message with Nodes
+        result = MessageEventResult()
+        result.chain = [Nodes(nodes=nodes)]
+        yield result
 
     @boss_command_group.command("cancel", alias={"取消", "remove", "rm", "del"})
     async def cancel_timer(self, event: AstrMessageEvent, boss_input: str):
@@ -627,7 +673,7 @@ class BossTimer(Star):
 
         yield MessageEventResult().message("\n".join(lines))
 
-    @filter.regex(r"^/map\s+(.+)$")
+    @filter.regex(r"^/map\s+(.+)$", priority=100)
     async def handle_map_query(self, event: AstrMessageEvent):
         """处理直接的地图查询（例如：/map 森林）"""
         message_str = event.get_message_str().strip()
@@ -646,10 +692,8 @@ class BossTimer(Star):
 
         # Try to show the map
         async for result in self._send_map(event, map_input):
+            result.stop_event()
             yield result
-
-        # Stop event propagation to prevent LLM from responding
-        event.stop_event()
 
     async def _send_map(self, event: AstrMessageEvent, map_input: str):
         """Internal method to send map image"""
@@ -676,7 +720,7 @@ class BossTimer(Star):
             map_name = map_data.get("name")
             result = MessageEventResult()
             result.message(f"🗺️ {map_name}")
-            result.image(str(map_path))
+            result.file_image(str(map_path))
             yield result
         except Exception as e:
             logger.error(f"Failed to send map image: {e}")
