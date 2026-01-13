@@ -15,6 +15,7 @@ from astrbot.api import logger
 from astrbot.api.event import AstrMessageEvent, filter
 from astrbot.api.star import Context, Star, register
 from astrbot.core.message.message_event_result import MessageEventResult
+from astrbot.core.star.filter.command import GreedyStr
 from astrbot.core.utils.astrbot_path import get_astrbot_data_path
 
 # Import utils modules
@@ -415,14 +416,12 @@ class BossTimer(Star):
                 f"❌ 未找到 {boss_input} 的活跃计时器\n使用 /boss list 查看所有计时器"
             )
 
-    @boss_command_group.command("set", alias={"add", "添加", "补充"})
-    async def cmd_set_boss_timer(self, event: AstrMessageEvent, boss_input: str, time_parts: tuple = ()):
+    @boss_command_group.command("add", alias={"添加", "补充"})
+    async def add_timer(self, event: AstrMessageEvent, boss_input: str, spawn_time_str: GreedyStr):
         """
         Manually add a boss timer with specified spawn time.
-        Usage: /boss set uk 15:30, /boss set uk 01-14 08:00
+        Usage: /boss add uk 15:30, /boss add uk 01-14 08:00
         """
-        # Join time_parts to get spawn time string
-        spawn_time_str = " ".join(str(p) for p in time_parts) if time_parts else ""
 
         if not boss_input or not spawn_time_str:
             yield MessageEventResult().message(
