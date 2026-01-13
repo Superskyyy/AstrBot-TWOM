@@ -415,20 +415,29 @@ class BossTimer(Star):
                 f"❌ 未找到 {boss_input} 的活跃计时器\n使用 /boss list 查看所有计时器"
             )
 
-    @boss_command_group.command("add", alias={"添加", "补充"})
-    async def add_timer(self, event: AstrMessageEvent, boss_input: str, time_part1: str, time_part2: str = ""):
+    @filter.event_message_type(filter.EventMessageType.ALL, priority=100)
+    async def add_timer(self, event: AstrMessageEvent):
         """
         Manually add a boss timer with specified spawn time.
         Usage: /boss add wdk 15:30, /boss add bmm 01-11 08:00
         """
-        # Combine time parts (handles "01-11 08:00" being split into two args)
-        spawn_time_str = f"{time_part1} {time_part2}".strip() if time_part2 else time_part1
+        msg = event.get_message_str().strip()
+
+        # Match /boss add|添加|补充 <boss> <time>
+        match = re.match(r"^/boss\s+(?:add|添加|补充)\s+(\S+)\s+(.+)$", msg, re.IGNORECASE)
+        if not match:
+            return
+
+        boss_input = match.group(1)
+        spawn_time_str = match.group(2).strip()
+
         if not spawn_time_str:
             yield MessageEventResult().message(
                 f"❌ 请指定刷新时间\n\n用法：/boss add <boss名> <刷新时间>\n"
                 f"示例：/boss add wdk 15:30\n"
                 f"      /boss add bmm 01-11 08:00"
             )
+            event.stop_event()
             return
 
         # Check permissions
@@ -447,6 +456,7 @@ class BossTimer(Star):
             yield MessageEventResult().message(
                 f"❌ 未找到boss：{boss_input}\n使用 /boss help 查看所有支持的boss"
             )
+            event.stop_event()
             return
 
         # Check group boss filter
@@ -465,6 +475,7 @@ class BossTimer(Star):
                 f"  15:30 或 15:30:45 (今天)\n"
                 f"  01-11 15:30 或 01-11 15:30:45 (指定日期)"
             )
+            event.stop_event()
             return
 
         # Check if spawn time is in the future
@@ -475,6 +486,7 @@ class BossTimer(Star):
                 f"指定时间：{time_utils.format_time(spawn_time, secondary_tz=self.secondary_tz, show_secondary=self.show_secondary)}\n"
                 f"当前时间：{time_utils.format_time(now, secondary_tz=self.secondary_tz, show_secondary=self.show_secondary)}"
             )
+            event.stop_event()
             return
 
         current_user_id = None if group_id else self._get_user_id(event.unified_msg_origin)
@@ -525,6 +537,7 @@ class BossTimer(Star):
             self.show_secondary,
         )
         yield MessageEventResult().message(message)
+        event.stop_event()
 
     @boss_command_group.command("reset", alias={"重置", "清空"})
     async def reset_timers(self, event: AstrMessageEvent):
