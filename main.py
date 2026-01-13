@@ -54,7 +54,7 @@ class BossTimer(Star):
 
         # Load configurations using utils
         default_bosses_path = Path(__file__).parent / "default_bosses.json"
-        self.bosses = boss_config.load_bosses(self.data_dir, default_bosses_path)
+        self.bosses = boss_config.load_bosses(default_bosses_path)
         self.boss_alias_map = boss_config.build_alias_map(self.bosses)
 
         self.timers = timer_storage.load_timers(self.data_dir)
@@ -416,11 +416,21 @@ class BossTimer(Star):
             )
 
     @boss_command_group.command("add", alias={"添加", "补充"})
-    async def add_timer(self, event: AstrMessageEvent, boss_input: str, spawn_time_str: str):
+    async def add_timer(self, event: AstrMessageEvent, boss_input: str, *time_parts: str):
         """
         Manually add a boss timer with specified spawn time.
         Usage: /boss add wdk 15:30, /boss add bmm 01-11 08:00
         """
+        # Join time parts (handles "01-11 08:00" being split into two args)
+        spawn_time_str = " ".join(time_parts)
+        if not spawn_time_str:
+            yield MessageEventResult().message(
+                f"❌ 请指定刷新时间\n\n用法：/boss add <boss名> <刷新时间>\n"
+                f"示例：/boss add wdk 15:30\n"
+                f"      /boss add bmm 01-11 08:00"
+            )
+            return
+
         # Check permissions
         group_id = event.get_group_id()
         if group_id:

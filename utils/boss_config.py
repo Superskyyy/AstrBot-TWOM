@@ -4,38 +4,24 @@ Handles loading boss data, alias mapping, and display names
 """
 
 import json
-import shutil
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, Optional
 
-from astrbot.api import logger
 
-
-def load_bosses(data_dir: Path, default_bosses_path: Path) -> Dict:
+def load_bosses(default_bosses_path: Path) -> Dict:
     """
-    Load boss configuration from data directory or default.
+    Load boss configuration from default bosses file.
 
     Args:
-        data_dir: Directory to store/load boss configuration
-        default_bosses_path: Path to default bosses.json
+        default_bosses_path: Path to default_bosses.json
 
     Returns:
         Dictionary of boss configurations
     """
-    bosses_file = data_dir / "bosses.json"
-
-    # Copy default bosses if not exists
-    if not bosses_file.exists():
-        if default_bosses_path.exists():
-            shutil.copy(default_bosses_path, bosses_file)
-            logger.info("Created default bosses.json")
-
-    # Load bosses
-    if bosses_file.exists():
-        with open(bosses_file, "r", encoding="utf-8") as f:
+    if default_bosses_path.exists():
+        with open(default_bosses_path, "r", encoding="utf-8") as f:
             return json.load(f)
-
     return {}
 
 

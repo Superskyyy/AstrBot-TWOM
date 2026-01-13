@@ -142,6 +142,17 @@
     "respawn_seconds": 45,
     "emoji": "🔴🔴🔴"
   },
+  "lh": {
+    "display_name": "lh 所有鬼（记 1:05:00）",
+    "aliases": [
+      "lh",
+      "lh3"
+    ],
+    "respawn_hours": 1,
+    "respawn_minutes": 5,
+    "respawn_seconds": 0,
+    "emoji": "🔴🟢🔵"
+  },
   "gimp": {
     "display_name": "Gimp",
     "aliases": [
@@ -153,10 +164,11 @@
     "emoji": "🐣🐣🐣"
   },
   "sephia": {
-    "display_name": "Sephia",
+    "display_name": "赛斐亚 Sephia",
     "aliases": [
       "sephia",
-      "赛斐亚"
+      "赛斐亚",
+      "狐狸"
     ],
     "respawn_hours": 72,
     "respawn_minutes": 0,
@@ -164,11 +176,12 @@
     "emoji": "🐾"
   },
   "caligo": {
-    "display_name": "龙 Caligo",
+    "display_name": "克里高 Caligo",
     "aliases": [
       "caligo",
       "龙",
-      "龍"
+      "龍",
+      "克里高"
     ],
     "respawn_hours": 168,
     "respawn_minutes": 0,
@@ -197,10 +210,12 @@
     "emoji": "🐍🐍🐍"
   },
   "dev": {
-    "display_name": "Dev",
+    "display_name": "戴弗龙 Devilang",
     "aliases": [
       "dev",
-      "dev维护"
+      "dev维护",
+      "戴弗龙",
+      "devilang"
     ],
     "respawn_hours": 5,
     "respawn_minutes": 33,
@@ -208,7 +223,7 @@
     "emoji": "👢👢👢"
   },
   "faith": {
-    "display_name": "Faith",
+    "display_name": "培伊斯 Faith",
     "aliases": [
       "faith",
       "培伊斯"
@@ -242,10 +257,11 @@
     "emoji": "🔮🔮🔮"
   },
   "darl": {
-    "display_name": "Darlene",
+    "display_name": "魔女迪尔林 Darlene",
     "aliases": [
       "女巫",
-      "darl"
+      "darl",
+      "魔女"
     ],
     "respawn_hours": 72,
     "respawn_minutes": 0,
@@ -253,11 +269,12 @@
     "emoji": "🧙‍♀️🧙‍♀️🧙"
   },
   "uk": {
-    "display_name": "Ukpana",
+    "display_name": "乌克波那 Ukpana",
     "aliases": [
       "uk",
       "ukp",
-      "ukpana"
+      "ukpana",
+      "乌克波那"
     ],
     "respawn_hours": 48,
     "respawn_minutes": 0,
@@ -298,30 +315,105 @@
     "respawn_hours": 2,
     "respawn_minutes": 33,
     "respawn_seconds": 0,
-    "emoji": "🐶⚔️"
+    "emoji": "🐶⚔️🏴"
+  },
+  "白狗": {
+    "display_name": "白狗 Zealot",
+    "aliases": [
+      "白狗",
+      "Zealot"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 58,
+    "respawn_seconds": 0,
+    "emoji": "🐶⚔️🏳"
+  },
+  "哥布林": {
+    "display_name": "小妖精勇士 Goblin Warrior",
+    "aliases": [
+      "哥布林",
+      "妖精",
+      "Goblin",
+      "蓝哥布林"      
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 58,
+    "respawn_seconds": 0,
+    "emoji": "🟦🧌"
+  },
+  "地精": {
+    "display_name": "地精 (西) Gnome",
+    "aliases": [
+      "地精",
+      "Gnome"  
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 58,
+    "respawn_seconds": 0,
+    "emoji": "💣"
   },
   "steampunk": {
     "display_name": "蒸汽朋克 Streampunk",
     "aliases": [
       "steampunk",
-      "蒸汽朋克"
+      "蒸汽朋克",
+      "朋克"
     ],
     "respawn_hours": 2,
     "respawn_minutes": 30,
     "respawn_seconds": 0,
     "emoji": "🤖🩸"
   },
-  "twist": {
-    "display_name": "Twister",
+  "twister": {
+    "display_name": "旋风 Twister",
     "aliases": [
       "twist",
       "twister",
-      "绿龙卷"
+      "绿龙卷",
+      "旋风"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 58,
     "respawn_seconds": 20,
     "emoji": "🟢🌪️🟢"
+  },
+  "Maelstrom": {
+    "display_name": "漩涡 Maelstrom",
+    "aliases": [
+      "maelstrom",
+      "蓝旋风",
+      "mael",
+      "蓝龙卷",
+      "漩涡"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 58,
+    "respawn_seconds": 20,
+    "emoji": "🌀🌀🌀"
+  },
+  "Swirl Flame": {
+    "display_name": "风暴 Swirl Flame",
+    "aliases": [
+      "swirl flame",
+      "红旋风",
+      "红龙卷"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 58,
+    "respawn_seconds": 20,
+    "emoji": "🔴🌪️🔴"
+  },
+  "精灵女王": {
+    "display_name": "精灵女王 Elemental Queen",
+    "aliases": [
+      "精灵女王",
+      "EQ",
+      "女王"
+    ],
+    "respawn_hours": 2,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "👸🧝‍♀️👸"
   },
   "tank": {
     "display_name": "坦克 Tank",
@@ -334,7 +426,7 @@
     "emoji": "🎽🎽🎽"
   },
   "红鸟": {
-    "display_name": "红鸟",
+    "display_name": "怪鸟（红) Ominous Bird",
     "aliases": [
       "红鸟",
       "红龙"
@@ -344,7 +436,31 @@
     "respawn_seconds": 20,
     "emoji": "🐦"
   },
-  "泰坦": {
+  "雕像": {
+    "display_name": "雕像 (东) Stonestatue",
+    "aliases": [
+      "石像",
+      "雕像",
+      "SS",
+      "statue"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 58,
+    "respawn_seconds": 20,
+    "emoji": "🗿"
+  },
+  "地雷": {
+    "display_name": "地雷 (迷宫) Landmine",
+    "aliases": [
+      "地雷",
+      "Landmine"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 58,
+    "respawn_seconds": 20,
+    "emoji": "💣"
+  },
+  "钛合金魔像": {
     "display_name": "钛合金魔像 Titanium Golem",
     "aliases": [
       "泰坦",
@@ -560,21 +676,46 @@
     "emoji": "👻🦎🛡️"
   },
   "大树": {
-    "display_name": "大树 Corrupt Forest Keeper",
+    "display_name": "堕落的森林守护者 Corrupt Forest Keeper",
     "aliases": [
       "大树",
       "树",
-      "tree"
+      "tree",
+      "堕落的森林守护者"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 58,
     "respawn_seconds": 0,
     "emoji": "🌳"
   },
-  "毒液花": {
-    "display_name": "毒液花",
+  "阿打打": {
+    "display_name": "阿打打 Smaaack",
     "aliases": [
-      "毒液花"
+      "阿打打",
+      "Smaaack"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 28,
+    "respawn_seconds": 10,
+    "emoji": "🟪🥀"
+  },
+  "被感染的女王蜂": {
+    "display_name": "被感染的女王蜂 Contaminated Queen Bee",
+    "aliases": [
+      "被感染的女王蜂",
+      "女王蜂",
+      "紫蜂"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 28,
+    "respawn_seconds": 10,
+    "emoji": "🟪🐝"
+  },
+  "毒液花": {
+    "display_name": "毒液花 Poison Root Flower",
+    "aliases": [
+      "毒液花",
+      "PRF"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 28,
@@ -582,9 +723,10 @@
     "emoji": "☠️🥀"
   },
   "apapa": {
-    "display_name": "Apapa",
+    "display_name": "阿波波 Apapa",
     "aliases": [
-      "apapa"
+      "apapa",
+      "阿波波"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 15,
@@ -592,11 +734,23 @@
     "emoji": "👹"
   },
   "lab": {
-    "display_name": "Lab",
+    "display_name": "实验室 Islot Lab",
     "aliases": [
       "lab",
       "lab2",
       "lab3"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 30,
+    "respawn_seconds": 0,
+    "emoji": "🧪"
+  },
+  "temple": {
+    "display_name": "神殿 Islot Temple",
+    "aliases": [
+      "temple1",
+      "temple2",
+      "temple3"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 30,
@@ -730,7 +884,7 @@
     "respawn_hours": 0,
     "respawn_minutes": 20,
     "respawn_seconds": 0,
-    "emoji": "🐋"
+    "emoji": "🍮"
   },
   "活动pf": {
     "display_name": "活动 PF",
