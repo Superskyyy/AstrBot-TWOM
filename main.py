@@ -415,13 +415,14 @@ class BossTimer(Star):
                 f"❌ 未找到 {boss_input} 的活跃计时器\n使用 /boss list 查看所有计时器"
             )
 
-    @filter.regex(r"^/boss\s+(?:add|添加|补充)\s+(\S+)\s+(.+)$")
-    async def add_timer(self, event: AstrMessageEvent, boss_input: str, spawn_time_str: str):
+    @boss_command_group.command("add", alias={"添加", "补充"})
+    async def add_timer(self, event: AstrMessageEvent, boss_input: str, time_part1: str, time_part2: str = ""):
         """
         Manually add a boss timer with specified spawn time.
         Usage: /boss add wdk 15:30, /boss add bmm 01-11 08:00
         """
-        spawn_time_str = spawn_time_str.strip()
+        # Combine time parts (handles "01-11 08:00" being split into two args)
+        spawn_time_str = f"{time_part1} {time_part2}".strip() if time_part2 else time_part1
         if not spawn_time_str:
             yield MessageEventResult().message(
                 f"❌ 请指定刷新时间\n\n用法：/boss add <boss名> <刷新时间>\n"
