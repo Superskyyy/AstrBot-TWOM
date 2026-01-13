@@ -415,22 +415,21 @@ class BossTimer(Star):
                 f"❌ 未找到 {boss_input} 的活跃计时器\n使用 /boss list 查看所有计时器"
             )
 
-    @boss_command_group.command("add", alias={"添加", "补充"})
-    async def add_timer(self, event: AstrMessageEvent, boss_input: str = "", **kwargs):
+    @filter.event_message_type(filter.EventMessageType.ALL, priority=99)
+    async def handle_boss_add(self, event: AstrMessageEvent):
         """
         Manually add a boss timer with specified spawn time.
         Usage: /boss add wdk 15:30, /boss add bmm 01-11 08:00
         """
-        # Collect all time parts from kwargs (time_parts or individual args)
-        time_parts = kwargs.get("time_parts", [])
-        if isinstance(time_parts, str):
-            time_parts = [time_parts]
+        msg = event.get_message_str().strip()
 
-        # Also check for any other positional-like kwargs
-        extra_args = [v for k, v in sorted(kwargs.items()) if k not in ("time_parts",) and isinstance(v, str)]
-        all_time_parts = list(time_parts) + extra_args
+        # Match /boss add|添加|补充 <boss> <time>
+        match = re.match(r"^/boss\s+(?:add|添加|补充)\s+(\S+)\s+(.+)$", msg, re.IGNORECASE)
+        if not match:
+            return
 
-        spawn_time_str = " ".join(all_time_parts).strip()
+        boss_input = match.group(1)
+        spawn_time_str = match.group(2).strip()
 
         if not boss_input or not spawn_time_str:
             yield MessageEventResult().message(
@@ -534,6 +533,7 @@ class BossTimer(Star):
             self.show_secondary,
         )
         yield MessageEventResult().message(message)
+        event.stop_event()
 
     @boss_command_group.command("reset", alias={"重置", "清空"})
     async def reset_timers(self, event: AstrMessageEvent):
