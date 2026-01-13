@@ -416,7 +416,7 @@ class BossTimer(Star):
             )
 
     @filter.event_message_type(filter.EventMessageType.ALL, priority=100)
-    async def add_timer(self, event: AstrMessageEvent):
+    async def handle_add_timer(self, event: AstrMessageEvent):
         """
         Manually add a boss timer with specified spawn time.
         Usage: /boss add wdk 15:30, /boss add bmm 01-11 08:00
