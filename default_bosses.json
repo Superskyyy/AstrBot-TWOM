@@ -249,11 +249,12 @@
     "display_name": "大脚 Bigfoot",
     "aliases": [
       "bigfoot",
+      "大脚",
       "BF"
     ],
-    "respawn_hours": 7,
-    "respawn_minutes": 55,
-    "respawn_seconds": 0,
+    "respawn_hours": 0,
+    "respawn_minutes": 29,
+    "respawn_seconds": 52,
     "emoji": "🔮🔮🔮"
   },
   "darl": {
@@ -429,6 +430,7 @@
     "display_name": "怪鸟（红) Ominous Bird",
     "aliases": [
       "红鸟",
+      "怪鸟",
       "红龙"
     ],
     "respawn_hours": 0,
