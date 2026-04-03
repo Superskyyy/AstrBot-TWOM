@@ -75,6 +75,21 @@ class BossTimer(Star):
         """Extract user ID from unified_msg_origin"""
         return unified_msg_origin.split("_")[-1] if "_" in unified_msg_origin else unified_msg_origin
 
+    def _is_boss_timer_enabled_for_event(self, event: AstrMessageEvent) -> bool:
+        """Check whether this event is allowed to use boss timer features."""
+        group_id = event.get_group_id()
+        if group_id:
+            enabled = permission.is_group_enabled(group_id, self.config)
+            if not enabled:
+                logger.debug(f"Group {group_id} not enabled for boss timer")
+            return enabled
+
+        user_id = self._get_user_id(event.unified_msg_origin)
+        enabled = permission.is_user_enabled(user_id, self.config)
+        if not enabled:
+            logger.debug(f"User {user_id} not enabled for boss timer in private chat")
+        return enabled
+
     def _restore_timers(self):
         """Restore scheduled jobs from saved timers"""
         removed = scheduler.cleanup_expired_timers(self.timers, self.timezone)
@@ -196,16 +211,9 @@ class BossTimer(Star):
             return
 
         # Check permissions
+        if not self._is_boss_timer_enabled_for_event(event):
+            return
         group_id = event.get_group_id()
-        if group_id:
-            if not permission.is_group_enabled(group_id, self.config):
-                logger.debug(f"Group {group_id} not enabled for boss timer")
-                return
-        else:
-            user_id = self._get_user_id(event.unified_msg_origin)
-            if not permission.is_user_enabled(user_id, self.config):
-                logger.debug(f"User {user_id} not enabled for boss timer in private chat")
-                return
 
         # Check group boss filter
         if group_id:
@@ -289,6 +297,9 @@ class BossTimer(Star):
     @boss_command_group.command("list", alias={"bl", "汇总", "hz", "匯總"})
     async def list_timers(self, event: AstrMessageEvent):
         """List all active boss timers (filtered by group/user)"""
+        if not self._is_boss_timer_enabled_for_event(event):
+            return
+
         now = datetime.now(self.timezone)
         group_id = event.get_group_id()
 
@@ -344,6 +355,9 @@ class BossTimer(Star):
     @boss_command_group.command("bosses", alias={"all", "可用", "支持", "名单"})
     async def list_all_bosses(self, event: AstrMessageEvent):
         """List all supported boss names and aliases as a forward card message"""
+        if not self._is_boss_timer_enabled_for_event(event):
+            return
+
         if not self.bosses:
             yield MessageEventResult().message("❌ 没有加载任何boss配置")
             return
@@ -419,6 +433,9 @@ class BossTimer(Star):
     @boss_command_group.command("cancel", alias={"取消", "remove", "rm", "del"})
     async def cancel_timer(self, event: AstrMessageEvent, boss_input: str):
         """Cancel a boss timer. Usage: /boss cancel wdk"""
+        if not self._is_boss_timer_enabled_for_event(event):
+            return
+
         boss_input_lower = boss_input.lower()
 
         # Resolve boss name
@@ -478,14 +495,9 @@ class BossTimer(Star):
             return
 
         # Check permissions
+        if not self._is_boss_timer_enabled_for_event(event):
+            return
         group_id = event.get_group_id()
-        if group_id:
-            if not permission.is_group_enabled(group_id, self.config):
-                return
-        else:
-            user_id = self._get_user_id(event.unified_msg_origin)
-            if not permission.is_user_enabled(user_id, self.config):
-                return
 
         # Resolve boss name
         boss_name = boss_config.get_boss_by_alias(boss_input.lower(), self.boss_alias_map)
@@ -575,6 +587,9 @@ class BossTimer(Star):
     @boss_command_group.command("reset", alias={"重置", "清空"})
     async def reset_timers(self, event: AstrMessageEvent):
         """Reset all boss timers. Only group admins and private chat users can use this."""
+        if not self._is_boss_timer_enabled_for_event(event):
+            return
+
         group_id = event.get_group_id()
 
         # Permission check for group chat
@@ -582,15 +597,6 @@ class BossTimer(Star):
             # In group chat, only admins can reset
             if not event.is_admin():
                 yield MessageEventResult().message("❌ 只有群管理员才能执行重置操作")
-                return
-
-            # Check if this group is enabled
-            if not permission.is_group_enabled(group_id, self.config):
-                return
-        else:
-            # In private chat, check if user is enabled
-            user_id = self._get_user_id(event.unified_msg_origin)
-            if not permission.is_user_enabled(user_id, self.config):
                 return
 
         # Cancel all scheduled jobs
@@ -621,6 +627,9 @@ class BossTimer(Star):
     @boss_command_group.command("help", alias={"帮助", "?"})
     async def show_help(self, event: AstrMessageEvent):
         """Show help message"""
+        if not self._is_boss_timer_enabled_for_event(event):
+            return
+
         help_text = (
             "📖 TWOM Boss计时器使用说明\n\n"
             "━━━ 记录Boss死亡 ━━━\n格式：<boss名> d [时间]\n\n示例：\n"
