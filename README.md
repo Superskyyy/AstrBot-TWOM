@@ -251,6 +251,8 @@ data/boss_timer/                   # 数据目录
 
 ### 群组隔离与核心群机制
 
+支持 3 组独立群组集合（`whitelist_groups` / `whitelist_groups_2` / `whitelist_groups_3`），不同集合之间的 boss 计时器完全隔离。
+
 **私聊（Private Chat）**：
 - 完全独立的计时器，只有自己能看到
 - 提醒通过私聊发送，不会出现在任何群里
@@ -271,7 +273,11 @@ data/boss_timer/                   # 数据目录
 {
   "whitelist_enabled": true,
   "whitelist_groups": ["111111", "222222", "999999"],
-  "core_groups": ["999999"]
+  "core_groups": ["999999"],
+  "whitelist_groups_2": ["333333", "444444", "888888"],
+  "core_groups_2": ["888888"],
+  "whitelist_groups_3": ["555555", "666666", "777777"],
+  "core_groups_3": ["777777"]
 }
 ```
 

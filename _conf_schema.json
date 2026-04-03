@@ -76,6 +76,20 @@
     "default": [],
     "hint": "【可选】核心群可以查看集合2内所有群的boss计时器（只收到自己群的提醒）"
   },
+  "whitelist_groups_3": {
+    "description": "白名单群组列表 - 集合3",
+    "type": "list",
+    "items": { "type": "string" },
+    "default": [],
+    "hint": "集合3的群组列表，与集合1和集合2完全隔离。格式：[\"123456789\", \"987654321\"]"
+  },
+  "core_groups_3": {
+    "description": "核心群组列表 - 集合3（可选）",
+    "type": "list",
+    "items": { "type": "string" },
+    "default": [],
+    "hint": "【可选】核心群可以查看集合3内所有群的boss计时器（只收到自己群的提醒）"
+  },
   "custom_bosses_enabled": {
     "description": "启用自定义boss配置",
     "type": "bool",

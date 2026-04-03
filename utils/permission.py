@@ -1,13 +1,39 @@
 """
 Permission utilities for TWOM Boss Timer
 Handles whitelist and boss filtering for groups/users
-Supports two isolated group sets (Set 1 and Set 2)
+Supports isolated group sets (Set 1, Set 2, Set 3, ...)
 """
 
 import json
 from typing import Dict, List, Optional, Set
 
 from astrbot.api import logger
+
+
+def _get_set_config_keys(set_num: int) -> tuple[str, str]:
+    """Return whitelist/core config keys for a set number."""
+    if set_num == 1:
+        return "whitelist_groups", "core_groups"
+    return f"whitelist_groups_{set_num}", f"core_groups_{set_num}"
+
+
+def _get_configured_set_numbers(config: Dict) -> List[int]:
+    """
+    Discover all supported set numbers from the config.
+
+    Set 1 always exists via the legacy unnumbered keys, while extra sets use
+    numbered keys such as whitelist_groups_2 / core_groups_2.
+    """
+    set_numbers = {1}
+
+    for key in config.keys():
+        if not (key.startswith("whitelist_groups_") or key.startswith("core_groups_")):
+            continue
+        suffix = key.rsplit("_", 1)[-1]
+        if suffix.isdigit():
+            set_numbers.add(int(suffix))
+
+    return sorted(set_numbers)
 
 
 def get_group_set(group_id: str, config: Dict) -> Optional[int]:
@@ -19,21 +45,16 @@ def get_group_set(group_id: str, config: Dict) -> Optional[int]:
         config: Plugin configuration
 
     Returns:
-        1 if group is in Set 1, 2 if in Set 2, None if not in any set
+        Set number if group is in a configured set, None otherwise
     """
     group_id_str = str(group_id)
 
-    # Check Set 1 (whitelist_groups + core_groups)
-    whitelist_1 = [str(g) for g in config.get("whitelist_groups", [])]
-    core_1 = [str(g) for g in config.get("core_groups", [])]
-    if group_id_str in whitelist_1 or group_id_str in core_1:
-        return 1
-
-    # Check Set 2 (whitelist_groups_2 + core_groups_2)
-    whitelist_2 = [str(g) for g in config.get("whitelist_groups_2", [])]
-    core_2 = [str(g) for g in config.get("core_groups_2", [])]
-    if group_id_str in whitelist_2 or group_id_str in core_2:
-        return 2
+    for set_num in _get_configured_set_numbers(config):
+        whitelist_key, core_key = _get_set_config_keys(set_num)
+        whitelist = [str(g) for g in config.get(whitelist_key, [])]
+        core = [str(g) for g in config.get(core_key, [])]
+        if group_id_str in whitelist or group_id_str in core:
+            return set_num
 
     return None
 
@@ -43,20 +64,18 @@ def get_all_groups_in_set(set_num: int, config: Dict) -> Set[str]:
     Get all group IDs in a specific set.
 
     Args:
-        set_num: Set number (1 or 2)
+        set_num: Set number
         config: Plugin configuration
 
     Returns:
         Set of all group IDs in the specified set
     """
-    if set_num == 1:
-        whitelist = [str(g) for g in config.get("whitelist_groups", [])]
-        core = [str(g) for g in config.get("core_groups", [])]
-    elif set_num == 2:
-        whitelist = [str(g) for g in config.get("whitelist_groups_2", [])]
-        core = [str(g) for g in config.get("core_groups_2", [])]
-    else:
+    if set_num not in _get_configured_set_numbers(config):
         return set()
+
+    whitelist_key, core_key = _get_set_config_keys(set_num)
+    whitelist = [str(g) for g in config.get(whitelist_key, [])]
+    core = [str(g) for g in config.get(core_key, [])]
 
     return set(whitelist) | set(core)
 
@@ -107,12 +126,17 @@ def is_core_group(group_id: str, config: Dict) -> bool:
         config: Plugin configuration
 
     Returns:
-        True if this is a core group (in either set)
+        True if this is a core group (in any configured set)
     """
     group_id_str = str(group_id)
-    core_1 = [str(g) for g in config.get("core_groups", [])]
-    core_2 = [str(g) for g in config.get("core_groups_2", [])]
-    return group_id_str in core_1 or group_id_str in core_2
+
+    for set_num in _get_configured_set_numbers(config):
+        _, core_key = _get_set_config_keys(set_num)
+        core_groups = [str(g) for g in config.get(core_key, [])]
+        if group_id_str in core_groups:
+            return True
+
+    return False
 
 
 def get_allowed_bosses_for_group(group_id: str, config: Dict) -> Optional[Set[str]]:
@@ -156,7 +180,7 @@ def should_show_timer(
 ) -> bool:
     """
     Check if a timer should be visible to the viewer.
-    Enforces set isolation: groups in Set 1 cannot see Set 2 timers and vice versa.
+    Enforces set isolation: groups can only see timers from their own set.
 
     Args:
         timer_id: Timer ID
