@@ -168,7 +168,8 @@
     "aliases": [
       "sephia",
       "赛斐亚",
-      "狐狸"
+      "狐狸",
+      "狗"
     ],
     "respawn_hours": 72,
     "respawn_minutes": 0,
@@ -181,7 +182,8 @@
       "caligo",
       "龙",
       "龍",
-      "克里高"
+      "克里高",
+      "大龙"
     ],
     "respawn_hours": 168,
     "respawn_minutes": 0,
@@ -193,7 +195,8 @@
     "aliases": [
       "ntr",
       "牛头人",
-      "illust"
+      "illust",
+      "棺材"
     ],
     "respawn_hours": 72,
     "respawn_minutes": 0,
@@ -203,7 +206,8 @@
   "bmm": {
     "display_name": "白发魔女 Bigmama",
     "aliases": [
-      "bmm"
+      "bmm",
+      "妈妈"
     ],
     "respawn_hours": 48,
     "respawn_minutes": 0,
@@ -216,7 +220,8 @@
       "dev",
       "dev维护",
       "戴弗龙",
-      "devilang"
+      "devilang",
+      "小龙"
     ],
     "respawn_hours": 5,
     "respawn_minutes": 33,
@@ -227,7 +232,10 @@
     "display_name": "培伊斯 Faith",
     "aliases": [
       "faith",
-      "培伊斯"
+      "培伊斯",
+      "肥死",
+      "肥肥",
+      "肥"
     ],
     "respawn_hours": 5,
     "respawn_minutes": 53,
@@ -239,7 +247,10 @@
     "aliases": [
       "bill",
       "bill-fake",
-      "billi"
+      "billi",
+      "紫袍",
+      "比利",
+      "bili"
     ],
     "respawn_hours": 7,
     "respawn_minutes": 55,
@@ -276,7 +287,8 @@
       "uk",
       "ukp",
       "ukpana",
-      "乌克波那"
+      "乌克波那",
+      "乌克"
     ],
     "respawn_hours": 48,
     "respawn_minutes": 0,
@@ -764,7 +776,9 @@
     "display_name": "鹿 Actaemon",
     "aliases": [
       "deer",
-      "鹿"
+      "鹿",
+      "撸",
+      "鹿鹿"
     ],
     "respawn_hours": 6,
     "respawn_minutes": 0,
@@ -835,7 +849,9 @@
     "aliases": [
       "sl",
       "lich",
-      "巫妖"
+      "巫妖",
+      "面具",
+      "索尔里奇"
     ],
     "respawn_hours": 24,
     "respawn_minutes": 15,
