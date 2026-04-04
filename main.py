@@ -436,7 +436,7 @@ class BossTimer(Star):
         if not self._is_boss_timer_enabled_for_event(event):
             return
 
-        boss_input_lower = boss_input.lower()
+        boss_input_lower = zhconv.convert(boss_input, 'zh-cn').lower()
 
         # Resolve boss name
         boss_name = boss_config.get_boss_by_alias(boss_input_lower, self.boss_alias_map)
@@ -500,7 +500,7 @@ class BossTimer(Star):
         group_id = event.get_group_id()
 
         # Resolve boss name
-        boss_name = boss_config.get_boss_by_alias(boss_input.lower(), self.boss_alias_map)
+        boss_name = boss_config.get_boss_by_alias(zhconv.convert(boss_input, 'zh-cn').lower(), self.boss_alias_map)
         if not boss_name:
             yield MessageEventResult().message(
                 f"❌ 未找到boss：{boss_input}\n使用 /boss help 查看所有支持的boss"
