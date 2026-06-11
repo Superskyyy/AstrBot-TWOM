@@ -82,7 +82,9 @@
     "display_name": "Recluse",
     "aliases": [
       "recluse",
-      "recluse-fake"
+      "recluse-fake",
+      "兰草",
+      "蓝草"
     ],
     "respawn_hours": 11,
     "respawn_minutes": 23,
@@ -92,7 +94,8 @@
   "ak": {
     "display_name": "AK",
     "aliases": [
-      "ak"
+      "ak",
+      "睡醒的库伊"
     ],
     "respawn_hours": 1,
     "respawn_minutes": 3,
@@ -102,7 +105,10 @@
   "snake": {
     "display_name": "Snake",
     "aliases": [
-      "snake"
+      "snake",
+      "蛇尾查德",
+      "蛇蛇查德",
+      "蛇尾"
     ],
     "respawn_hours": 8,
     "respawn_minutes": 43,
@@ -113,7 +119,9 @@
     "display_name": "Blue",
     "aliases": [
       "blue",
-      "蓝鬼"
+      "蓝鬼",
+      "蓝",
+      "呵呵"
     ],
     "respawn_hours": 1,
     "respawn_minutes": 5,
@@ -124,7 +132,9 @@
     "display_name": "Green",
     "aliases": [
       "green",
-      "绿鬼"
+      "绿鬼",
+      "绿",
+      "哈哈"
     ],
     "respawn_hours": 1,
     "respawn_minutes": 8,
@@ -135,7 +145,9 @@
     "display_name": "Red",
     "aliases": [
       "red",
-      "红鬼"
+      "红鬼",
+      "红",
+      "嘻嘻"
     ],
     "respawn_hours": 1,
     "respawn_minutes": 6,
@@ -287,6 +299,7 @@
     "display_name": "雪球 Barslaf",
     "aliases": [
       "barslaf",
+      "baslaf",
       "雪球",
       "雪人",
       "bars",
@@ -522,7 +535,8 @@
   "suuk": {
     "display_name": "Suuk",
     "aliases": [
-      "suuk"
+      "suuk",
+      "嘶呃呃"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 20,
@@ -532,7 +546,8 @@
   "svk": {
     "display_name": "SVK",
     "aliases": [
-      "svk"
+      "svk",
+      "嘶嘶嘶"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 20,
@@ -542,17 +557,48 @@
   "rb": {
     "display_name": "红蜜蜂 RB",
     "aliases": [
-      "rb"
+      "rb",
+      "普斯斯兹斯",
+      "red bee",
+      "红蜜蜂",
+      "红蜂"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 30,
     "respawn_seconds": 0,
     "emoji": "🔴🐝"
   },
+  "buzzss": {
+    "display_name": "布兹兹",
+    "aliases": [
+      "buzz",
+      "buzss",
+      "bzz"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🔴🐝"
+  },
+  "bizizi": {
+    "display_name": "毕吉吉",
+    "aliases": [
+      "bizizi",
+      "bizz",
+      "biz",
+      "bjj"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🐝"
+  },
   "ass": {
     "display_name": "Assassin",
     "aliases": [
       "ass",
+      "沙漠刺客",
+      "刺客",
       "azz"
     ],
     "respawn_hours": 0,
@@ -563,7 +609,9 @@
   "bm": {
     "display_name": "大老鼠 BM",
     "aliases": [
-      "bm"
+      "bm",
+      "大老鼠",
+      "big mouse"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 20,
@@ -575,7 +623,8 @@
     "aliases": [
       "lm",
       "神经病",
-      "轻微神经病"
+      "轻微神经病",
+      "lesser madman"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 20,
@@ -615,10 +664,12 @@
     "emoji": "🟢🦊"
   },
   "d4": {
-    "display_name": "Shield 4",
+    "display_name": "熔岩扒手头目",
     "aliases": [
       "盾4",
-      "d4"
+      "d4",
+      "熔岩扒手头目",
+      "扒手"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 30,
@@ -628,7 +679,8 @@
   "花": {
     "display_name": "777 Flower",
     "aliases": [
-      "花"
+      "日落花",
+      "彩霞枯花"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 20,
@@ -648,7 +700,8 @@
   "raven": {
     "display_name": "Raven",
     "aliases": [
-      "raven"
+      "raven",
+      "乌鸦"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 20,
@@ -913,7 +966,9 @@
   "活动beach": {
     "display_name": "活动 Beach",
     "aliases": [
-      "活动beach"
+      "活动beach",
+      "活动沙滩",
+      "活动海滩"
     ],
     "respawn_hours": 5,
     "respawn_minutes": 55,
