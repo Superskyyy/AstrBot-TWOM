@@ -81,9 +81,24 @@ def format_timer_list(
     if not timers:
         return "当前没有活跃的Boss计时器"
 
+    # Collapse duplicate boss entries from multiple visible groups. Keep the
+    # earliest spawn because that is the actionable next timer for the boss.
+    deduped_timers = {}
+    for timer_id, timer_data in timers.items():
+        boss_name = timer_data["boss"]
+        existing = deduped_timers.get(boss_name)
+        spawn_time = datetime.fromisoformat(timer_data["spawn_time"])
+        existing_spawn_time = (
+            datetime.fromisoformat(existing[1]["spawn_time"])
+            if existing is not None
+            else None
+        )
+        if existing_spawn_time is None or spawn_time < existing_spawn_time:
+            deduped_timers[boss_name] = (timer_id, timer_data)
+
     # Sort timers by spawn time
     sorted_timers = sorted(
-        timers.items(),
+        deduped_timers.values(),
         key=lambda x: datetime.fromisoformat(x[1]["spawn_time"]),
     )
 
