@@ -3,184 +3,412 @@
     {
       "id": "1",
       "name": "伊斯洛实验室",
-      "aliases": ["实验室", "伊斯洛实验室","lab"],
-      "file": "伊斯洛实验室.png",
+      "aliases": [
+        "实验室",
+        "伊斯洛实验室",
+        "lab"
+      ],
+      "file": "实验室.webp",
       "category": "伊斯洛"
     },
     {
       "id": "2",
       "name": "伊斯洛神殿",
-      "aliases": ["神殿", "伊斯洛神殿"],
-      "file": "伊斯洛神殿.png",
+      "aliases": [
+        "神殿",
+        "伊斯洛神殿"
+      ],
+      "file": "光绝神殿.webp",
       "category": "伊斯洛"
     },
     {
       "id": "3",
       "name": "伊诺提亚战争",
-      "aliases": ["战争", "伊诺提亚战争"],
+      "aliases": [
+        "战争",
+        "伊诺提亚战争"
+      ],
       "file": "伊诺提亚战争.jpg",
       "category": "伊诺提亚"
     },
     {
       "id": "4",
       "name": "天空城-古代阁楼",
-      "aliases": ["古代阁楼", "阁楼"],
-      "file": "天空城-古代阁楼.jpg",
+      "aliases": [
+        "古代阁楼",
+        "阁楼"
+      ],
+      "file": "古代阁楼.webp",
       "category": "天空城"
     },
     {
       "id": "5",
       "name": "天空城-堕落神殿",
-      "aliases": ["堕落神殿", "堕落"],
-      "file": "天空城-堕落神殿.png",
+      "aliases": [
+        "堕落神殿",
+        "堕落"
+      ],
+      "file": "堕落神殿.webp",
       "category": "天空城"
     },
     {
       "id": "6",
       "name": "天空城-天空城东部",
-      "aliases": ["天空城东部", "东部", "天东"],
-      "file": "天空城-天空城东部.jpg",
+      "aliases": [
+        "天空城东部",
+        "东部",
+        "天东"
+      ],
+      "file": "天空东部.webp",
       "category": "天空城"
     },
     {
       "id": "7",
       "name": "天空城-天空城西部",
-      "aliases": ["天空城西部", "西部", "天西"],
-      "file": "天空城-天空城西部.jpg",
+      "aliases": [
+        "天空城西部",
+        "西部",
+        "天西"
+      ],
+      "file": "天空西部.webp",
       "category": "天空城"
     },
     {
       "id": "8",
       "name": "天空城-未知迷宫",
-      "aliases": ["未知迷宫", "未知"],
-      "file": "天空城-未知迷宫.png",
+      "aliases": [
+        "未知迷宫",
+        "未知"
+      ],
+      "file": "未知迷宫.webp",
       "category": "天空城"
     },
     {
       "id": "9",
       "name": "天空城-石塔要塞",
-      "aliases": ["石塔要塞", "石塔"],
-      "file": "天空城-石塔要塞.png",
+      "aliases": [
+        "石塔要塞",
+        "石塔"
+      ],
+      "file": "石塔要塞.webp",
       "category": "天空城"
     },
     {
       "id": "10",
       "name": "悲叹祭坛",
-      "aliases": ["悲叹", "悲叹祭坛","aa"],
-      "file": "悲叹祭坛.png",
+      "aliases": [
+        "悲叹",
+        "悲叹祭坛",
+        "aa"
+      ],
+      "file": "悲叹祭坛.webp",
       "category": "其他"
     },
     {
       "id": "11",
       "name": "森林迷宫-右洞",
-      "aliases": ["森林右洞", "右洞", "cave2", "c2"],
-      "file": "cave2.png",
+      "aliases": [
+        "森林右洞",
+        "右洞",
+        "cave2",
+        "c2"
+      ],
+      "file": "C2.webp",
       "category": "森林迷宫"
     },
     {
       "id": "12",
       "name": "森林迷宫-左洞",
-      "aliases": ["森林左洞", "左洞", "cave1", "c1"],
-      "file": "cave1.png",
+      "aliases": [
+        "森林左洞",
+        "左洞",
+        "cave1",
+        "c1"
+      ],
+      "file": "C1.webp",
       "category": "森林迷宫"
     },
     {
       "id": "13",
       "name": "森林迷宫-森林",
-      "aliases": ["森林迷宫", "森林"],
-      "file": "森林迷宫-森林.png",
+      "aliases": [
+        "森林迷宫",
+        "森林"
+      ],
+      "file": "森林迷宫.webp",
       "category": "森林迷宫"
     },
     {
       "id": "14",
       "name": "灯塔地牢1F",
-      "aliases": ["灯塔1", "灯塔1F", "灯塔地牢1F", "lh1"],
-      "file": "灯塔地牢1F.jpeg",
+      "aliases": [
+        "灯塔1",
+        "灯塔1F",
+        "灯塔地牢1F",
+        "lh1"
+      ],
+      "file": "灯塔1层.webp",
       "category": "灯塔地牢"
     },
     {
       "id": "15",
       "name": "灯塔地牢2F",
-      "aliases": ["灯塔2", "灯塔2F", "灯塔地牢2F", "lh2"],
-      "file": "灯塔地牢2F.jpeg",
+      "aliases": [
+        "灯塔2",
+        "灯塔2F",
+        "灯塔地牢2F",
+        "lh2"
+      ],
+      "file": "灯塔2层.webp",
       "category": "灯塔地牢"
     },
     {
       "id": "16",
       "name": "灯塔地牢3F",
-      "aliases": ["灯塔3", "灯塔3F", "灯塔地牢3F", "lh3"],
-      "file": "灯塔地牢3F.jpeg",
+      "aliases": [
+        "灯塔3",
+        "灯塔3F",
+        "灯塔地牢3F",
+        "lh3"
+      ],
+      "file": "灯塔3层.webp",
       "category": "灯塔地牢"
     },
     {
       "id": "17",
       "name": "灯塔地牢4F",
-      "aliases": ["灯塔4", "灯塔4F", "灯塔地牢4F", "lh4"],
-      "file": "灯塔地牢4F.jpeg",
+      "aliases": [
+        "灯塔4",
+        "灯塔4F",
+        "灯塔地牢4F",
+        "lh4"
+      ],
+      "file": "灯塔4层.webp",
       "category": "灯塔地牢"
     },
     {
       "id": "18",
       "name": "灯塔地牢5F",
-      "aliases": ["灯塔5", "灯塔5F", "灯塔地牢5F", "lh5"],
-      "file": "灯塔地牢5F.jpeg",
+      "aliases": [
+        "灯塔5",
+        "灯塔5F",
+        "灯塔地牢5F",
+        "lh5"
+      ],
+      "file": "灯塔5层.webp",
       "category": "灯塔地牢"
     },
     {
       "id": "19",
       "name": "石冠营地",
-      "aliases": ["石冠", "营地", "石冠营地"],
+      "aliases": [
+        "石冠",
+        "营地",
+        "石冠营地"
+      ],
       "file": "石冠营地.png",
       "category": "西普奈尔之路"
     },
     {
       "id": "20",
       "name": "莫勒波西兹庭院",
-      "aliases": ["庭院", "莫勒波西兹庭院"],
-      "file": "莫勒波西兹庭院.png",
+      "aliases": [
+        "庭院",
+        "莫勒波西兹庭院"
+      ],
+      "file": "庭院.webp",
       "category": "莫勒波西兹"
     },
     {
       "id": "21",
       "name": "莫勒波西兹根蔓",
-      "aliases": ["根蔓", "莫勒波西兹根蔓","根部"],
+      "aliases": [
+        "根蔓",
+        "莫勒波西兹根蔓",
+        "根部"
+      ],
       "file": "莫勒波西兹根蔓.png",
       "category": "莫勒波西兹"
     },
     {
       "id": "22",
       "name": "莫勒波西兹禁书库",
-      "aliases": ["禁书库", "莫勒波西兹禁书库"],
-      "file": "莫勒波西兹禁书库.png",
+      "aliases": [
+        "禁书库",
+        "莫勒波西兹禁书库"
+      ],
+      "file": "图书库.webp",
       "category": "莫勒波西兹"
     },
     {
       "id": "23",
       "name": "被污染的森林",
-      "aliases": ["污染森林", "被污染的森林","pf"],
-      "file": "被污染的森林.png",
+      "aliases": [
+        "污染森林",
+        "被污染的森林",
+        "pf"
+      ],
+      "file": "污染森林.webp",
       "category": "其他"
     },
     {
       "id": "24",
       "name": "西普奈尔之路-石冠上坡路",
-      "aliases": ["石冠上坡路", "上坡路"],
+      "aliases": [
+        "石冠上坡路",
+        "上坡路"
+      ],
       "file": "西普奈尔之路-石冠上坡路.png",
       "category": "西普奈尔之路"
     },
     {
       "id": "25",
       "name": "赛勒殷祭坛",
-      "aliases": ["赛勒殷", "赛勒殷祭坛"],
+      "aliases": [
+        "赛勒殷",
+        "赛勒殷祭坛"
+      ],
       "file": "赛勒殷祭坛.png",
       "category": "其他"
     },
     {
       "id": "26",
       "name": "鲁纳夫",
-      "aliases": ["鲁纳夫","lunarf"],
-      "file": "鲁纳夫.jpg",
+      "aliases": [
+        "鲁纳夫",
+        "lunarf"
+      ],
+      "file": "鲁纳夫.webp",
       "category": "其他"
+    },
+    {
+      "id": "27",
+      "name": "木木森",
+      "aliases": [
+        "木木森"
+      ],
+      "file": "木木森.webp",
+      "category": "伍迪森林"
+    },
+    {
+      "id": "28",
+      "name": "木林森",
+      "aliases": [
+        "木林森"
+      ],
+      "file": "木林森.webp",
+      "category": "伍迪森林"
+    },
+    {
+      "id": "29",
+      "name": "蘑菇湿地",
+      "aliases": [
+        "蘑菇湿地"
+      ],
+      "file": "蘑菇湿地.webp",
+      "category": "伍迪森林"
+    },
+    {
+      "id": "30",
+      "name": "沙滩",
+      "aliases": [
+        "沙滩",
+        "beach"
+      ],
+      "file": "沙滩.webp",
+      "category": "其他"
+    },
+    {
+      "id": "31",
+      "name": "灯塔岛",
+      "aliases": [
+        "灯塔岛"
+      ],
+      "file": "灯塔岛.webp",
+      "category": "灯塔地牢"
+    },
+    {
+      "id": "32",
+      "name": "兰诺斯平原",
+      "aliases": [
+        "兰诺斯平原",
+        "lanos",
+        "枯原"
+      ],
+      "file": "枯原.webp",
+      "category": "兰诺斯"
+    },
+    {
+      "id": "33",
+      "name": "晚霞森林",
+      "aliases": [
+        "晚霞森林"
+      ],
+      "file": "晚霞森林.webp",
+      "category": "兰诺斯"
+    },
+    {
+      "id": "34",
+      "name": "废墟森林",
+      "aliases": [
+        "废墟森林"
+      ],
+      "file": "废墟森林.webp",
+      "category": "兰诺斯"
+    },
+    {
+      "id": "35",
+      "name": "卡塔勒山脉",
+      "aliases": [
+        "卡塔勒山脉",
+        "kataru",
+        "kataru mounts",
+        "kataru mountains"
+      ],
+      "file": "卡塔勒山脉.webp",
+      "category": "兰诺斯"
+    },
+    {
+      "id": "36",
+      "name": "沙墓峡谷",
+      "aliases": [
+        "沙墓峡谷"
+      ],
+      "file": "沙墓峡谷.webp",
+      "category": "沙漠"
+    },
+    {
+      "id": "37",
+      "name": "热沙平原",
+      "aliases": [
+        "热沙平原",
+        "hsp",
+        "hot sand plains"
+      ],
+      "file": "热沙平原.webp",
+      "category": "沙漠"
+    },
+    {
+      "id": "38",
+      "name": "死亡沼泽",
+      "aliases": [
+        "死亡沼泽",
+        "mod",
+        "moor of death",
+        "moors of death"
+      ],
+      "file": "死亡沼泽.webp",
+      "category": "沙漠"
+    },
+    {
+      "id": "39",
+      "name": "实验室2楼",
+      "aliases": [
+        "实验室2楼",
+        "lab2"
+      ],
+      "file": "实验室2楼.webp",
+      "category": "伊斯洛"
     }
   ]
 }

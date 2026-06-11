@@ -726,6 +726,24 @@ class BossTimer(Star):
     def map_command_group(self):
         """Map查看器命令组"""
 
+    @map_command_group.command("")
+    async def show_map(self, event: AstrMessageEvent, map_input: GreedyStr = ""):
+        """Show a map by name, alias, or ID. Usage: /map 森林"""
+        map_input = zhconv.convert(map_input.strip(), 'zh-cn')
+        if not map_input:
+            async for result in self.list_maps(event):
+                yield result
+            return
+
+        if map_input.lower() in ["list", "ls", "列表", "地图", "help", "帮助"]:
+            async for result in self.list_maps(event):
+                yield result
+            return
+
+        event.stop_event()
+        async for result in self._send_map(event, map_input):
+            yield result
+
     @map_command_group.command("list", alias={"ls", "map", "地图"})
     async def list_maps(self, event: AstrMessageEvent):
         """列出所有可用的地图"""
@@ -753,28 +771,6 @@ class BossTimer(Star):
 
         yield MessageEventResult().message("\n".join(lines))
 
-    @filter.regex(r"^/map\s+(.+)$", priority=100)
-    async def handle_map_query(self, event: AstrMessageEvent):
-        """处理直接的地图查询（例如：/map 森林）"""
-        message_str = event.get_message_str().strip()
-        message_str = zhconv.convert(message_str, 'zh-cn')
-
-        # Extract map input after /map
-        match = re.match(r"^/map\s+(.+)$", message_str)
-        if not match:
-            return
-
-        map_input = match.group(1).strip()
-
-        # Skip if it's already a known subcommand
-        if map_input.lower() in ["list", "ls", "列表", "地图", "help", "帮助"]:
-            return
-
-        # Try to show the map
-        event.stop_event()
-        async for result in self._send_map(event, map_input):
-            yield result
-
     async def _send_map(self, event: AstrMessageEvent, map_input: str):
         """Internal method to send map image"""
         # Find map by ID or alias
@@ -788,7 +784,11 @@ class BossTimer(Star):
 
         # Get map file path
         map_file = map_data.get("file")
-        map_path = self.assets_dir / "IMO地图查看器_files" / map_file
+        map_path = self.assets_dir / "imo_maps_new" / map_file
+        if not map_path.exists():
+            map_path = self.assets_dir / map_file
+        if not map_path.exists():
+            map_path = self.assets_dir / "IMO地图查看器_files" / map_file
 
         if not map_path.exists():
             yield MessageEventResult().message(f"❌ 地图文件不存在：{map_file}")
