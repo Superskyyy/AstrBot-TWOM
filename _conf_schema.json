@@ -55,6 +55,12 @@
     "default": "3",
     "hint": "逗号分隔，如 3 表示提前3分钟提醒，或 30,15,3 表示多个时间点提醒"
   },
+  "lib_mini_reminder_group": {
+    "description": "Lib Mini固定提醒群",
+    "type": "string",
+    "default": "",
+    "hint": "填写一个群号后，每天中国时间10:00/22:00提醒Lib Mini，10:45/22:45无人报死亡则再次提醒。留空关闭"
+  },
   "core_groups": {
     "description": "核心群组列表 - 集合1（可选）",
     "type": "list",

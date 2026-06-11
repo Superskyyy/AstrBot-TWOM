@@ -20,7 +20,7 @@ from astrbot.core.star.filter.command import GreedyStr
 from astrbot.core.utils.astrbot_path import get_astrbot_data_path
 
 # Import utils modules
-from .utils import boss_config, formatter, map_config, permission, scheduler, time_utils, timer_storage
+from .utils import boss_config, formatter, lib_mini, map_config, permission, scheduler, time_utils, timer_storage
 
 
 @register(
@@ -41,6 +41,7 @@ class BossTimer(Star):
         # Initialize timezones (primary + secondary)
         tz_str = self.config.get("timezone", "Asia/Shanghai")
         self.timezone = time_utils.init_timezone(tz_str)
+        self.china_tz = time_utils.init_timezone("Asia/Shanghai")
 
         secondary_tz_str = self.config.get("secondary_timezone", "America/Toronto")
         self.secondary_tz = time_utils.init_timezone(secondary_tz_str) if secondary_tz_str else None
@@ -63,10 +64,12 @@ class BossTimer(Star):
 
         self.maps = map_config.load_maps(self.assets_dir)
         self.map_alias_map = map_config.build_map_alias_map(self.maps)
+        self.lib_mini_last_death_report_time = None
 
         # Start scheduler and restore timers
         self.scheduler.start()
         self._restore_timers()
+        self._schedule_lib_mini_reminders()
 
         logger.info("TWOM Boss Timer plugin initialized successfully")
 
@@ -140,6 +143,63 @@ class BossTimer(Star):
         except Exception as e:
             logger.error(f"Failed to send reminder to {umo}: {e}")
 
+    def _get_lib_mini_reminder_group_id(self) -> Optional[str]:
+        """Return configured Lib Mini reminder group ID, if enabled."""
+        group_id = str(self.config.get("lib_mini_reminder_group", "")).strip()
+        return group_id or None
+
+    def _schedule_lib_mini_reminders(self):
+        """Schedule fixed daily Lib Mini reminders in China time."""
+        group_id = self._get_lib_mini_reminder_group_id()
+        if not group_id:
+            return
+
+        for hour in (10, 22):
+            self.scheduler.add_job(
+                self._send_lib_mini_reminder,
+                "cron",
+                hour=hour,
+                minute=0,
+                timezone=self.china_tz,
+                args=[False],
+                id=f"lib_mini_reminder_{hour:02d}00",
+                replace_existing=True,
+            )
+            self.scheduler.add_job(
+                self._send_lib_mini_reminder,
+                "cron",
+                hour=hour,
+                minute=45,
+                timezone=self.china_tz,
+                args=[True],
+                id=f"lib_mini_reminder_{hour:02d}45",
+                replace_existing=True,
+            )
+
+        logger.info(f"Scheduled Lib Mini reminders for group {group_id}")
+
+    async def _send_lib_mini_reminder(self, followup: bool):
+        """Send scheduled Lib Mini reminder to the configured group."""
+        group_id = self._get_lib_mini_reminder_group_id()
+        if not group_id:
+            return
+
+        now = datetime.now(self.china_tz)
+        if followup and not lib_mini.should_send_followup_reminder(
+            now,
+            self.lib_mini_last_death_report_time,
+        ):
+            logger.debug("Skipping Lib Mini follow-up because a death report was seen")
+            return
+
+        try:
+            await self.context.send_message(
+                f"qq_group_{group_id}",
+                MessageEventResult().message(lib_mini.LIB_MINI_REMINDER_MESSAGE),
+            )
+        except Exception as e:
+            logger.error(f"Failed to send Lib Mini reminder to group {group_id}: {e}")
+
     @filter.event_message_type(filter.EventMessageType.ALL, priority=100)
     async def handle_boss_death(self, event: AstrMessageEvent):
         """Handle boss death recording. Pattern: <boss_name> d [time]"""
@@ -148,6 +208,16 @@ class BossTimer(Star):
         msg = zhconv.convert(msg, 'zh-cn')
         # Normalize spaces (replace full-width spaces and multiple spaces with single space)
         msg = re.sub(r'\s+', ' ', msg.replace('　', ' '))
+        group_id = event.get_group_id()
+
+        if (
+            group_id
+            and str(group_id) == self._get_lib_mini_reminder_group_id()
+            and lib_mini.is_lib_mini_death_report(msg)
+        ):
+            self.lib_mini_last_death_report_time = datetime.now(self.china_tz)
+            logger.debug(f"Recorded Lib Mini death report in group {group_id}")
+            return
 
         # Parse boss command (支持 "大树 d" 和 "大树d" 两种格式)
         msg_lower = msg.lower()
@@ -213,7 +283,6 @@ class BossTimer(Star):
         # Check permissions
         if not self._is_boss_timer_enabled_for_event(event):
             return
-        group_id = event.get_group_id()
 
         # Check group boss filter
         if group_id:
@@ -614,6 +683,7 @@ class BossTimer(Star):
 
         # Save empty timers
         timer_storage.save_timers(self.data_dir, self.timers)
+        self._schedule_lib_mini_reminders()
 
         # Send confirmation
         message = (
