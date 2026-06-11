@@ -171,17 +171,19 @@ def parse_death_time(time_str: str, timezone: zoneinfo.ZoneInfo) -> datetime:
         # Just "d" - killed now
         return now
 
+    time_token = time_str.split(maxsplit=1)[0]
+
     # Check if it's just minutes (e.g., "23")
-    if time_str.isdigit():
+    if time_token.isdigit():
         # Current hour, specified minute
-        minute = int(time_str)
+        minute = int(time_token)
         if not 0 <= minute < 60:
             raise ValueError("分钟必须在 0-59 之间")
         death_time = now.replace(minute=minute, second=0, microsecond=0)
         return death_time
 
     # Try parsing as HH:MM or HH:MM:SS
-    time_match = re.match(r"(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?", time_str)
+    time_match = re.fullmatch(r"(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?", time_token)
     if time_match:
         hour = int(time_match.group(1))
         minute = int(time_match.group(2))
@@ -196,7 +198,7 @@ def parse_death_time(time_str: str, timezone: zoneinfo.ZoneInfo) -> datetime:
         )
         return death_time
 
-    if not re.search(r"\d|:", time_str):
+    if not re.search(r"\d|:", time_token):
         logger.debug(f"Ignoring non-time text after death marker: {time_str}")
         return now
 

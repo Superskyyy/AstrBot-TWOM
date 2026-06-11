@@ -31,6 +31,19 @@ class ParseDeathTimeTests(unittest.TestCase):
 
         self.assertIsNotNone(death_time)
 
+    def test_accepts_minute_with_drop_note_after_death_marker(self):
+        death_time = time_utils.parse_death_time("22 爽死 mn", ZoneInfo("UTC"))
+
+        self.assertEqual(death_time.minute, 22)
+        self.assertEqual(death_time.second, 0)
+
+    def test_accepts_clock_time_with_drop_note_after_death_marker(self):
+        death_time = time_utils.parse_death_time("12:34 爽死 mn", ZoneInfo("UTC"))
+
+        self.assertEqual(death_time.hour, 12)
+        self.assertEqual(death_time.minute, 34)
+        self.assertEqual(death_time.second, 0)
+
     def test_rejects_invalid_time_like_text_after_death_marker(self):
         with self.assertRaises(ValueError):
             time_utils.parse_death_time("99:99", ZoneInfo("UTC"))
