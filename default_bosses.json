@@ -3,7 +3,8 @@
     "display_name": "爱困乌龟维护 tzzz1 (±15min)",
     "aliases": [
       "tzzz1",
-      "爱困乌龟1"
+      "爱困乌龟1",
+      "大乌龟1"
     ],
     "respawn_hours": 68,
     "respawn_minutes": 25,
@@ -13,7 +14,9 @@
   "tzzz2": {
     "display_name": "爱困乌龟普通 tzzz2 (±15min)",
     "aliases": [
-      "tzzz2"
+      "tzzz2",
+      "大乌龟2",
+      "大乌龟"
     ],
     "respawn_hours": 65,
     "respawn_minutes": 0,
@@ -113,7 +116,7 @@
     "respawn_hours": 8,
     "respawn_minutes": 43,
     "respawn_seconds": 20,
-    "emoji": "🦎"
+    "emoji": "🐍"
   },
   "blue": {
     "display_name": "Blue",
@@ -185,7 +188,7 @@
     "respawn_hours": 72,
     "respawn_minutes": 0,
     "respawn_seconds": 0,
-    "emoji": "🐾"
+    "emoji": "🦊"
   },
   "caligo": {
     "display_name": "克里高 Caligo",
@@ -349,7 +352,7 @@
       "哥布林",
       "妖精",
       "Goblin",
-      "蓝哥布林"      
+      "蓝哥布林"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 58,
@@ -360,7 +363,7 @@
     "display_name": "地精 (西) Gnome",
     "aliases": [
       "地精",
-      "Gnome"  
+      "Gnome"
     ],
     "respawn_hours": 0,
     "respawn_minutes": 58,
@@ -640,7 +643,17 @@
     "respawn_hours": 0,
     "respawn_minutes": 20,
     "respawn_seconds": 0,
-    "emoji": "🤕🤕🤕"
+    "emoji": "🧠😱"
+  },
+  "hsp": {
+    "display_name": "hsp bm/lm/ms",
+    "aliases": [
+      "hsp"
+    ],
+    "respawn_hours": 0,
+    "respawn_minutes": 20,
+    "respawn_seconds": 0,
+    "emoji": "🐹🤕🧠"
   },
   "7": {
     "display_name": "7 Fox",
@@ -834,7 +847,7 @@
     "respawn_hours": 1,
     "respawn_minutes": 0,
     "respawn_seconds": 0,
-    "emoji": "🐖"
+    "emoji": "🩶🐖"
   },
   "ypig": {
     "display_name": "黄猪 Mushroom Bulldozer",
@@ -847,7 +860,7 @@
     "respawn_hours": 1,
     "respawn_minutes": 0,
     "respawn_seconds": 0,
-    "emoji": "🐖"
+    "emoji": "🟡🐖"
   },
   "熊": {
     "display_name": "艾伊尤的护卫兵 Aiyo's Protector",
@@ -940,7 +953,7 @@
     "respawn_hours": 0,
     "respawn_minutes": 20,
     "respawn_seconds": 0,
-    "emoji": "🍮"
+    "emoji": "🟢🍮"
   },
   "活动pf": {
     "display_name": "活动 PF",

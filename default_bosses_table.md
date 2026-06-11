@@ -4,8 +4,8 @@
 
 | key | 显示名 | 别名 | Emoji |
 |---|---|---|---|
-| tzzz1 | 爱困乌龟维护 tzzz1 (±15min) | tzzz1, 爱困乌龟1 | 🐢🐢(±15min) |
-| tzzz2 | 爱困乌龟普通 tzzz2 (±15min) | tzzz2 | 🐢🐢(±15min) |
+| tzzz1 | 爱困乌龟维护 tzzz1 (±15min) | tzzz1, 爱困乌龟1, 大乌龟1 | 🐢🐢(±15min) |
+| tzzz2 | 爱困乌龟普通 tzzz2 (±15min) | tzzz2, 大乌龟2, 大乌龟 | 🐢🐢(±15min) |
 | tz | 狂睡乌龟 tz | tz, 小乌龟, 狂睡乌龟 | 🐢 |
 | pboss | 海盗 PirateBoss | pboss, 海盗船, 船长 | 🏴‍☠️ |
 | 黑天 | 黑天 BlackSky | 黑天, blacksky | 🐼🛠️ |
@@ -13,13 +13,13 @@
 | bs | 黑骨 BlackSkull | bs, 黑骨 | ⚫💀 |
 | recluse | Recluse | recluse, recluse-fake, 兰草, 蓝草 | 🦋🦋🦋 |
 | ak | AK | ak, 睡醒的库伊 | 🥊🥊🥊🥊 |
-| snake | Snake | snake, 蛇尾查德, 蛇蛇查德, 蛇尾 | 🦎 |
+| snake | Snake | snake, 蛇尾查德, 蛇蛇查德, 蛇尾 | 🐍 |
 | blue | Blue | blue, 蓝鬼, 蓝, 呵呵 | 🔵🔵🔵 |
 | green | Green | green, 绿鬼, 绿, 哈哈 | 🟢🟢🟢 |
 | red | Red | red, 红鬼, 红, 嘻嘻 | 🔴🔴🔴 |
 | lh | lh 所有鬼（记 1:05:00） | lh, lh3 | 🔴🟢🔵 |
 | gimp | Gimp | gimp | 🐣🐣🐣 |
-| sephia | 赛斐亚 Sephia | sephia, 赛斐亚, 狐狸 | 🐾 |
+| sephia | 赛斐亚 Sephia | sephia, 赛斐亚, 狐狸 | 🦊 |
 | caligo | 克里高 Caligo | caligo, 龙, 龍, 克里高 | 🐲 |
 | ntr | 牛头人 Illust | ntr, 牛头人, illust | 🐮🐮🐮🐮 |
 | bmm | 白发魔女 Bigmama | bmm | 🐍🐍🐍 |
@@ -57,7 +57,8 @@
 | ass | Assassin | ass, 沙漠刺客, 刺客, azz | 💰🚶 |
 | bm | 大老鼠 BM | bm, 大老鼠, big mouse | 🐹🐹🐹 |
 | lm | 轻微神经病 Lesser Madman | lm, 神经病, 轻微神经病, lesser madman | 🤕🤕🤕 |
-| ms | 心声 MindScream | ms, 心声 | 🤕🤕🤕 |
+| ms | 心声 MindScream | ms, 心声 | 🧠😱 |
+| hsp | hsp bm/lm/ms | hsp | 🐹🤕🧠 |
 | 7 | 7 Fox | 7 | 🦊🔒 |
 | 绿狐狸 | 777 Fox | 绿狐狸, 777 | 🟢🦊 |
 | d4 | 熔岩扒手头目 | 盾4, d4, 熔岩扒手头目, 扒手 | 🦹‍♂️🛡️ |
@@ -74,8 +75,8 @@
 | lab | 实验室 Islot Lab | lab, lab2, lab3 | 🧪 |
 | temple | 神殿 Islot Temple | temple1, temple2, temple3 | 🧪 |
 | deer | 鹿 Actaemon | deer, 鹿 | 🦌🦌🦌 |
-| gpig | 灰猪 Flower Bulldozer | gpig, 灰猪, FB | 🐖 |
-| ypig | 黄猪 Mushroom Bulldozer | ypig, 黄猪, 棕猪, MB | 🐖 |
+| gpig | 灰猪 Flower Bulldozer | gpig, 灰猪, FB | 🩶🐖 |
+| ypig | 黄猪 Mushroom Bulldozer | ypig, 黄猪, 棕猪, MB | 🟡🐖 |
 | 熊 | 艾伊尤的护卫兵 Aiyo's Protector | 熊, Bear, Aiyo | 🐻 |
 | mush | 莫提蘑菇 | Morty, 莫提 | 🍄 |
 | butterfly | 亚勒凯蝴蝶 | 蝴蝶, butterfly | 🦋 |
@@ -83,7 +84,7 @@
 | overload | 奥伯洛德 Overload | overload, ol | 🪄 |
 | glu | 格鲁柯斯 GLU | glu, gl | 🪄 |
 | 恒河豚 | 恒河豚 Platanista | 恒河豚, whale, 鲸鱼 | 🐋 |
-| rng | 软泥怪 Rotten Pudding | 软泥怪, rng, 腐烂的布丁, pudding | 🍮 |
+| rng | 软泥怪 Rotten Pudding | 软泥怪, rng, 腐烂的布丁, pudding | 🟢🍮 |
 | 活动pf | 活动 PF | 活动pf, 活动mod | 🎉 |
 | 活动hsp | 活动 HSP | 活动hsp | 🎉 |
 | 活动beach | 活动 Beach | 活动beach, 活动沙滩, 活动海滩 | 🎉 |
