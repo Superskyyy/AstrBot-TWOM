@@ -217,6 +217,7 @@ class BossTimer(Star):
         ):
             self.lib_mini_last_death_report_time = datetime.now(self.china_tz)
             logger.debug(f"Recorded Lib Mini death report in group {group_id}")
+            yield MessageEventResult().message("✅ 已记录 Lib Mini/图书馆 Mini 死亡，本轮 45 分提醒会跳过")
             return
 
         # Parse boss command (支持 "大树 d" 和 "大树d" 两种格式)

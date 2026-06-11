@@ -8,7 +8,7 @@ from datetime import datetime
 LIB_MINI_REMINDER_MESSAGE = "📚😙 Lib Mini/图书馆 Mini 即将刷新，请注意... 📖"
 
 _LIB_MINI_DEATH_PATTERN = re.compile(
-    r"^(?:lib\s*mini|图书馆\s*mini|图书馆)\s*d(?:\s+.*)?$",
+    r"^(?:lib(?:\s*mini)?|图书馆\s*mini|图书馆)\s*d(?:\s+.*)?$",
     re.IGNORECASE,
 )
 

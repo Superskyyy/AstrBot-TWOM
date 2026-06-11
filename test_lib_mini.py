@@ -25,6 +25,8 @@ import utils.lib_mini as lib_mini
 class LibMiniReminderTests(unittest.TestCase):
     def test_matches_lib_mini_death_report_variants(self):
         matching_messages = [
+            "lib d",
+            "libd",
             "lib mini d",
             "libmini d",
             "libminid",
@@ -42,7 +44,6 @@ class LibMiniReminderTests(unittest.TestCase):
 
     def test_rejects_non_lib_mini_messages(self):
         non_matching_messages = [
-            "lib d",
             "mini d",
             "library mini",
             "图书馆 mini",
