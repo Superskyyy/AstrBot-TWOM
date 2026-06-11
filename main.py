@@ -665,7 +665,7 @@ class BossTimer(Star):
         # Permission check for group chat
         if group_id:
             # In group chat, only admins can reset
-            if not event.is_admin():
+            if not await permission.can_reset_timers(event):
                 yield MessageEventResult().message("❌ 只有群管理员才能执行重置操作")
                 return
 

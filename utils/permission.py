@@ -117,6 +117,35 @@ def is_user_enabled(user_id: str, config: Dict) -> bool:
     return str(user_id) in [str(u) for u in whitelist_users]
 
 
+async def can_reset_timers(event) -> bool:
+    """
+    Check whether an event sender may reset boss timers.
+
+    Allows AstrBot admins plus actual platform group owners/admins.
+    """
+    try:
+        if event.is_admin():
+            return True
+    except Exception as e:
+        logger.debug(f"Failed to check AstrBot admin role: {e}")
+
+    try:
+        group = await event.get_group()
+    except Exception as e:
+        logger.debug(f"Failed to fetch group info for reset permission: {e}")
+        return False
+
+    if not group:
+        return False
+
+    sender_id = str(event.get_sender_id())
+    if group.group_owner and str(group.group_owner) == sender_id:
+        return True
+
+    admin_ids = [str(admin_id) for admin_id in (group.group_admins or [])]
+    return sender_id in admin_ids
+
+
 def is_core_group(group_id: str, config: Dict) -> bool:
     """
     Check if this is a core group (can view all timers in its set).
