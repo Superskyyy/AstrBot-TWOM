@@ -360,23 +360,6 @@ class BossTimer(Star):
                 yield result
             return
 
-    @filter.event_message_type(filter.EventMessageType.ALL, priority=100)
-    async def handle_map_command_message(self, event: AstrMessageEvent):
-        """Handle dynamic map lookups like /map 4 before they fall through to chat."""
-        map_input = map_config.parse_map_command(event.get_message_str())
-        if map_input is None:
-            return
-
-        map_input = zhconv.convert(map_input, 'zh-cn')
-        event.stop_event()
-        if not map_input or map_input.lower() in ["list", "ls", "列表", "地图", "help", "帮助"]:
-            async for result in self.list_maps(event):
-                yield result
-            return
-
-        async for result in self._send_map(event, map_input):
-            yield result
-
     @filter.command_group("boss")
     def boss_command_group(self):
         """Boss timer command group"""
@@ -739,14 +722,11 @@ class BossTimer(Star):
         )
         yield MessageEventResult().message(help_text)
 
-    @filter.command_group("map")
-    def map_command_group(self):
-        """Map查看器命令组"""
-
-    @map_command_group.command("")
+    @filter.command("map", alias={"地图"}, priority=100)
     async def show_map(self, event: AstrMessageEvent, map_input: GreedyStr = ""):
         """Show a map by name, alias, or ID. Usage: /map 森林"""
         map_input = zhconv.convert(map_input.strip(), 'zh-cn')
+        event.stop_event()
         if not map_input:
             async for result in self.list_maps(event):
                 yield result
@@ -757,11 +737,9 @@ class BossTimer(Star):
                 yield result
             return
 
-        event.stop_event()
         async for result in self._send_map(event, map_input):
             yield result
 
-    @map_command_group.command("list", alias={"ls", "map", "地图"})
     async def list_maps(self, event: AstrMessageEvent):
         """列出所有可用的地图"""
         if not self.maps:
