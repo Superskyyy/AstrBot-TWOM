@@ -196,6 +196,10 @@ def parse_death_time(time_str: str, timezone: zoneinfo.ZoneInfo) -> datetime:
         )
         return death_time
 
+    if not re.search(r"\d|:", time_str):
+        logger.debug(f"Ignoring non-time text after death marker: {time_str}")
+        return now
+
     raise ValueError(
         "时间格式错误。支持格式：d, d 23, d 12:30, d 12:30:45"
     )
