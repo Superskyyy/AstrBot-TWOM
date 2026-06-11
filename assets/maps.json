@@ -74,14 +74,14 @@
       "id": "11",
       "name": "森林迷宫-右洞",
       "aliases": ["森林右洞", "右洞"],
-      "file": "森林迷宫-右洞.png",
+      "file": "cave2.png",
       "category": "森林迷宫"
     },
     {
       "id": "12",
       "name": "森林迷宫-左洞",
       "aliases": ["森林左洞", "左洞"],
-      "file": "森林迷宫-左洞.png",
+      "file": "cave1.png",
       "category": "森林迷宫"
     },
     {

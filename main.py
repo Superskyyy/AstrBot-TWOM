@@ -771,8 +771,8 @@ class BossTimer(Star):
             return
 
         # Try to show the map
+        event.stop_event()
         async for result in self._send_map(event, map_input):
-            result.stop_event()
             yield result
 
     async def _send_map(self, event: AstrMessageEvent, map_input: str):
@@ -798,10 +798,8 @@ class BossTimer(Star):
         # Send the map image
         try:
             map_name = map_data.get("name")
-            result = MessageEventResult()
-            result.message(f"🗺️ {map_name}")
-            result.file_image(str(map_path))
-            yield result
+            yield event.plain_result(f"🗺️ {map_name}")
+            yield event.image_result(str(map_path))
         except Exception as e:
             logger.error(f"Failed to send map image: {e}")
             yield MessageEventResult().message(f"❌ 发送地图失败：{e}")
