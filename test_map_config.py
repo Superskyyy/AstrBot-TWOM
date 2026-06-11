@@ -2,7 +2,6 @@ import sys
 import types
 import unittest
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
 astrbot_module = types.ModuleType("astrbot")
 astrbot_api_module = types.ModuleType("astrbot.api")
@@ -22,21 +21,19 @@ utils_module = types.ModuleType("utils")
 utils_module.__path__ = [str(Path(__file__).parent / "utils")]
 sys.modules.setdefault("utils", utils_module)
 
-import utils.time_utils as time_utils
+import utils.map_config as map_config
 
 
-class ParseDeathTimeTests(unittest.TestCase):
-    def test_ignores_non_time_drop_note_after_death_marker(self):
-        death_time = time_utils.parse_death_time("osos", ZoneInfo("UTC"))
+class MapCommandParsingTests(unittest.TestCase):
+    def test_parses_map_command_arguments(self):
+        self.assertEqual(map_config.parse_map_command("/map 4"), "4")
+        self.assertEqual(map_config.parse_map_command("/map 森林"), "森林")
+        self.assertEqual(map_config.parse_map_command("/map   lh1"), "lh1")
+        self.assertEqual(map_config.parse_map_command("/map"), "")
 
-        self.assertIsNotNone(death_time)
-
-    def test_rejects_invalid_time_like_text_after_death_marker(self):
-        with self.assertRaises(ValueError):
-            time_utils.parse_death_time("99:99", ZoneInfo("UTC"))
-
-        with self.assertRaises(ValueError):
-            time_utils.parse_death_time("60", ZoneInfo("UTC"))
+    def test_ignores_non_map_messages(self):
+        self.assertIsNone(map_config.parse_map_command("map 4"))
+        self.assertIsNone(map_config.parse_map_command("/boss list"))
 
 
 if __name__ == "__main__":

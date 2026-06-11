@@ -10,7 +10,11 @@ astrbot_api_module = types.ModuleType("astrbot.api")
 astrbot_api_module.logger = type(
     "LoggerStub",
     (),
-    {"debug": lambda *args, **kwargs: None, "warning": lambda *args, **kwargs: None},
+    {
+        "debug": lambda *args, **kwargs: None,
+        "warning": lambda *args, **kwargs: None,
+        "error": lambda *args, **kwargs: None,
+    },
 )()
 sys.modules.setdefault("astrbot", astrbot_module)
 sys.modules.setdefault("astrbot.api", astrbot_api_module)

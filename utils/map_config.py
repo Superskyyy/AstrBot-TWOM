@@ -4,6 +4,7 @@ Handles loading map data and alias mapping
 """
 
 import json
+import re
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -76,6 +77,19 @@ def get_map_by_alias(alias: str, alias_map: Dict[str, Dict]) -> Optional[Dict]:
         Map data if found, None otherwise
     """
     return alias_map.get(alias.lower())
+
+
+def parse_map_command(message: str) -> Optional[str]:
+    """
+    Extract map input from a raw /map command message.
+
+    Returns an empty string for "/map" so callers can show the map list.
+    """
+    normalized = re.sub(r"\s+", " ", message.strip().replace("　", " "))
+    match = re.match(r"^/map(?:\s+(.+))?$", normalized, flags=re.IGNORECASE)
+    if not match:
+        return None
+    return (match.group(1) or "").strip()
 
 
 def get_maps_by_category(maps: List[Dict]) -> Dict[str, List[Dict]]:
