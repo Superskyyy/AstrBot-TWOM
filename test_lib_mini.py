@@ -36,6 +36,10 @@ class LibMiniReminderTests(unittest.TestCase):
             "图书馆 d",
             "图书馆d",
             "图书馆mini d osos",
+            "书库 d",
+            "书库d",
+            "书库 mini d",
+            "书库mini d",
         ]
 
         for message in matching_messages:
