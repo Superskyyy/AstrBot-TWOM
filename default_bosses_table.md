@@ -5,7 +5,7 @@
 | key | 显示名 | 别名 | Emoji |
 |---|---|---|---|
 | tzzz1 | 爱困乌龟维护 tzzz1 (±15min) | tzzz1, 爱困乌龟1, 大乌龟1 | 🐢🐢(±15min) |
-| tzzz2 | 爱困乌龟普通 tzzz2 (±15min) | tzzz2, 大乌龟2, 大乌龟 | 🐢🐢(±15min) |
+| tzzz2 | 爱困乌龟普通 tzzz2 (±15min) | tzzz2, 爱困乌龟2, 大乌龟2, 大乌龟 | 🐢🐢(±15min) |
 | tz | 狂睡乌龟 tz | tz, 小乌龟, 狂睡乌龟 | 🐢 |
 | pboss | 海盗 PirateBoss | pboss, 海盗船, 船长 | 🏴‍☠️ |
 | 黑天 | 黑天 BlackSky | 黑天, blacksky | 🐼🛠️ |
