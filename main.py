@@ -65,6 +65,9 @@ class BossTimer(Star):
         self.maps = map_config.load_maps(self.assets_dir)
         self.map_alias_map = map_config.build_map_alias_map(self.maps)
         self.lib_mini_last_death_report_time = None
+        # Real message origin captured from the Lib Mini group, used to deliver
+        # scheduled reminders (a fabricated origin string is not deliverable).
+        self.lib_mini_group_umo = None
 
         # Start scheduler and restore timers
         self.scheduler.start()
@@ -195,13 +198,23 @@ class BossTimer(Star):
             logger.debug("Skipping Lib Mini follow-up because a death report was seen")
             return
 
+        # Use a real message origin captured from the group; a fabricated
+        # "qq_group_<id>" string is not deliverable on most platform adapters.
+        target = self.lib_mini_group_umo
+        if not target:
+            logger.warning(
+                f"No captured message origin for Lib Mini group {group_id} yet; "
+                "skipping reminder. Send any message in the group first."
+            )
+            return
+
         try:
             await self.context.send_message(
-                f"qq_group_{group_id}",
+                target,
                 MessageEventResult().message(lib_mini.LIB_MINI_REMINDER_MESSAGE),
             )
         except Exception as e:
-            logger.error(f"Failed to send Lib Mini reminder to group {group_id}: {e}")
+            logger.error(f"Failed to send Lib Mini reminder to {target}: {e}")
 
     @filter.event_message_type(filter.EventMessageType.ALL, priority=100)
     async def handle_boss_death(self, event: AstrMessageEvent):
@@ -212,6 +225,11 @@ class BossTimer(Star):
         # Normalize spaces (replace full-width spaces and multiple spaces with single space)
         msg = re.sub(r'\s+', ' ', msg.replace('　', ' '))
         group_id = event.get_group_id()
+
+        # Capture a real, deliverable message origin for the Lib Mini group so
+        # scheduled reminders can be sent to it later.
+        if group_id and str(group_id) == self._get_lib_mini_reminder_group_id():
+            self.lib_mini_group_umo = event.unified_msg_origin
 
         if (
             group_id
@@ -689,6 +707,10 @@ class BossTimer(Star):
             return
 
         configured = self._get_lib_mini_reminder_group_id()
+        # Capture a real, deliverable origin from this command's group so the
+        # test send (and future scheduled reminders) can reach the group.
+        if group_id and str(group_id) == configured:
+            self.lib_mini_group_umo = event.unified_msg_origin
         # Re-run scheduling so a config change since startup takes effect now.
         self._schedule_lib_mini_reminders()
 
@@ -698,6 +720,7 @@ class BossTimer(Star):
             f"• 配置提醒群: {configured or '（未配置）'}",
             f"• 调度器时区: {self.scheduler.timezone}",
             f"• 当前中国时间: {now_cn:%Y-%m-%d %H:%M:%S %Z}",
+            f"• 发送目标(origin): {self.lib_mini_group_umo or '（未捕获）'}",
         ]
         for job_id in (
             "lib_mini_reminder_1000",
