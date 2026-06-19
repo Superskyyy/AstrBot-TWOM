@@ -152,34 +152,37 @@ class BossTimer(Star):
         """Schedule fixed daily Lib Mini reminders in China time."""
         group_id = self._get_lib_mini_reminder_group_id()
         if not group_id:
+            logger.info("Lib Mini reminders disabled (no lib_mini_reminder_group configured)")
             return
 
-        for hour in (10, 22):
-            self.scheduler.add_job(
+        # A once-daily cron must not be dropped by the default 1s misfire grace
+        # window if the event loop is briefly busy at the fire time; allow a
+        # generous catch-up and coalesce so it still fires (once) when late.
+        jobs = [
+            (hour, 0, False, f"lib_mini_reminder_{hour:02d}00") for hour in (10, 22)
+        ] + [
+            (hour, 45, True, f"lib_mini_reminder_{hour:02d}45") for hour in (10, 22)
+        ]
+        for hour, minute, followup, job_id in jobs:
+            job = self.scheduler.add_job(
                 self._send_lib_mini_reminder,
                 "cron",
                 hour=hour,
-                minute=0,
+                minute=minute,
                 timezone=self.china_tz,
-                args=[False],
-                id=f"lib_mini_reminder_{hour:02d}00",
+                args=[followup],
+                id=job_id,
                 replace_existing=True,
+                misfire_grace_time=600,
+                coalesce=True,
             )
-            self.scheduler.add_job(
-                self._send_lib_mini_reminder,
-                "cron",
-                hour=hour,
-                minute=45,
-                timezone=self.china_tz,
-                args=[True],
-                id=f"lib_mini_reminder_{hour:02d}45",
-                replace_existing=True,
-            )
+            logger.info(f"Scheduled Lib Mini job {job_id}, next run: {job.next_run_time}")
 
         logger.info(f"Scheduled Lib Mini reminders for group {group_id}")
 
     async def _send_lib_mini_reminder(self, followup: bool):
         """Send scheduled Lib Mini reminder to the configured group."""
+        logger.info(f"Lib Mini reminder fired (followup={followup})")
         group_id = self._get_lib_mini_reminder_group_id()
         if not group_id:
             return
@@ -221,37 +224,16 @@ class BossTimer(Star):
             return
 
         # Parse boss command (支持 "大树 d" 和 "大树d" 两种格式)
-        msg_lower = msg.lower()
-        boss_name = None
-        time_part = None
+        # 按最长 boss 名称优先匹配，避免把 "red bee" 误判成 "red"。
+        parsed = boss_config.parse_boss_death_command(msg, self.boss_alias_map)
+        if parsed is None:
+            logger.debug(f"Boss death pattern not matched: '{msg}'")
+            return
 
-        # 先尝试有空格的版本 "xxx d"
-        has_space_before_d = False
-        match_with_space = re.match(r"^(\S+)\s+d(?:\s+(.+))?$", msg_lower)
-        if match_with_space:
-            has_space_before_d = True
-            boss_input = match_with_space.group(1)
-            time_part = match_with_space.group(2)
-            boss_name = boss_config.get_boss_by_alias(boss_input, self.boss_alias_map)
-        else:
-            # 尝试无空格版本 "xxxd"
-            match_no_space = re.match(r"^(\S+)d(?:\s+(.+))?$", msg_lower)
-            if match_no_space:
-                prefix = match_no_space.group(1)
-                time_part = match_no_space.group(2)
-
-                # 先尝试完整名字（包括'd'）- 防止boss名本身以'd'结尾
-                full_name = prefix + 'd'
-                boss_name = boss_config.get_boss_by_alias(full_name, self.boss_alias_map)
-                boss_input = full_name if boss_name else prefix
-
-                # 如果完整名字找不到，再尝试去掉'd'的版本
-                if not boss_name:
-                    boss_name = boss_config.get_boss_by_alias(prefix, self.boss_alias_map)
-                    boss_input = prefix
-            else:
-                logger.debug(f"Boss death pattern not matched: '{msg}'")
-                return
+        boss_name = parsed.boss_name
+        boss_input = parsed.boss_input
+        time_part = parsed.time_part
+        has_space_before_d = parsed.has_space_before_d
         if not boss_name:
             # Boss not found - only show error message if there was a space before 'd'
             # e.g. "mushland d" should show error, but "mushland" (no space) should be silent
@@ -694,6 +676,45 @@ class BossTimer(Star):
             f"所有boss记录已被清空"
         )
         yield MessageEventResult().message(message)
+
+    @boss_command_group.command("libcheck", alias={"图书馆检查", "libtest"})
+    async def lib_mini_check(self, event: AstrMessageEvent):
+        """Diagnose Lib Mini reminders: reschedule, report job times, send a test."""
+        if not self._is_boss_timer_enabled_for_event(event):
+            return
+
+        group_id = event.get_group_id()
+        if group_id and not await permission.can_reset_timers(event):
+            yield MessageEventResult().message("❌ 只有群管理员才能执行此操作")
+            return
+
+        configured = self._get_lib_mini_reminder_group_id()
+        # Re-run scheduling so a config change since startup takes effect now.
+        self._schedule_lib_mini_reminders()
+
+        now_cn = datetime.now(self.china_tz)
+        lines = [
+            "🔎 Lib Mini 提醒诊断",
+            f"• 配置提醒群: {configured or '（未配置）'}",
+            f"• 调度器时区: {self.scheduler.timezone}",
+            f"• 当前中国时间: {now_cn:%Y-%m-%d %H:%M:%S %Z}",
+        ]
+        for job_id in (
+            "lib_mini_reminder_1000",
+            "lib_mini_reminder_1045",
+            "lib_mini_reminder_2200",
+            "lib_mini_reminder_2245",
+        ):
+            job = self.scheduler.get_job(job_id)
+            next_run = job.next_run_time if job else None
+            lines.append(f"• {job_id}: {next_run if next_run else '未调度'}")
+
+        if configured:
+            lines.append("• 正在发送一条测试提醒……")
+        yield MessageEventResult().message("\n".join(lines))
+
+        if configured:
+            await self._send_lib_mini_reminder(False)
 
     @boss_command_group.command("help", alias={"帮助", "?"})
     async def show_help(self, event: AstrMessageEvent):
